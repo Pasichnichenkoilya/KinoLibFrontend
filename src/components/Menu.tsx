@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import "../components/Menu.css"
+import "../componentscss/Menu.css"
 
 import { Knob } from 'primereact/knob';
 import { Slider } from 'primereact/slider';
