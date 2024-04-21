@@ -1,31 +1,3 @@
-.custom-slider {
-    position: relative;
-    width: 300px; /* Ширина слайдера */
-    height: 60px; /* Высота слайдера (может быть изменена в зависимости от размера изгиба) */
-    background-color: #ddd; /* Цвет фона слайдера */
-    border-radius: 30px; /* Радиус скругления краев */
-    overflow: hidden;
-}
-
-.custom-slider .slider-handle {
-    position: absolute;
-    width: 40px; /* Ширина ползунка */
-    height: 40px; /* Высота ползунка */
-    background-color: #007bff; /* Цвет ползунка */
-    border-radius: 50%; /* Делаем ползунок круглым */
-    top: 10px; /* Начальная позиция ползунка */
-    left: 0;
-    transform: translateX(-50%); /* Центрируем ползунок по горизонтали */
-}
-
-.custom-slider .slider-track {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: #007bff; /* Цвет трека */
-    border-radius: 30px; /* Радиус скругления краев трека */
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transform: translateY(10px); /* Смещаем трек вниз, чтобы он был выровнен с ползунком */
+.main_area_margin{
+    margin-top: 5.5%;
 }

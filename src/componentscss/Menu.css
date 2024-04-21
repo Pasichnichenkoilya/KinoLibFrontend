@@ -3,3 +3,7 @@
 .genres{
     background-color: #333333;
 }
+
+.p-knob-text {
+    color:aqua /* белый цвет текста */
+  }

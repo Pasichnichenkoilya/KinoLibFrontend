@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import Menu from "../components/Menu";
+
 import { Card } from "primereact/card";
+import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 
 import "../componentscss/MainPage.css";
 import MovieCard from "../components/MovieCard";
@@ -15,7 +18,6 @@ const fetchAllCards = async (page: number) => {
 };
 
 const MainPage = () => {
-  // const [value, setValue] = useState<[number, number]>([0, 10]);
   const [page, setPage] = useState(1);
   const [mediaCards, setMediaCards] = useState<Media[]>();
 
@@ -23,56 +25,98 @@ const MainPage = () => {
     const fetchData = async () => {
       const cards = await fetchAllCards(page);
       console.log(cards);
+      setMediaCards(cards)
     };
     fetchData();
   }, [page]);
 
-  return (
-    <div className="bg-red-500 w-full h-10rem flex flex-row">
-      {/* <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard />
-      <MovieCard /> */}
+  const itemTemplate = ( media: Media ) => {
+    return <MovieCard entry = {media} />
+  }
 
-      {mediaCards?.map((card) => (
-        <div>
-          <p>
-            <span>id:</span>
-            <span>{card.id}</span>
-          </p>
-          <p>
-            <span>title:</span>
-            <span>{card.title}</span>
-          </p>
-          <p>
-            <span>image:</span>
-            <span>{card.image}</span>
-          </p>
-          <p>
-            <span>year:</span>
-            <span>{card.year}</span>
-          </p>
-          <p>
-            <span>rating:</span>
-            <span>{card.rating}</span>
-          </p>
-          <p>
-            <span>genres:</span>
-            <span>{card.genres}</span>
-          </p>
-          <p>
-            <span>type:</span>
-            <span>{card.type}</span>
-          </p>
-          <p>
-            <span>lastEpisode:</span>
-            <span>{card.lastEpisode}</span>
-          </p>
+  const filmsList: Media[] = [
+    {
+      id: '1',
+      image: 'https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none',
+      title: 'On the Road',
+      year: 2020,
+      genres: ['Comedy'],
+      rating: 9.5,
+      type: 'movie',
+      lastEpisode: null,
+    },
+    {
+      id: '1',
+      image: 'https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none',
+      title: 'On the Road',
+      year: 2020,
+      genres: ['Comedy'],
+      rating: 9.5,
+      type: 'movie',
+      lastEpisode: null,
+    },
+    {
+      id: '1',
+      image: 'https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none',
+      title: 'On the Road',
+      year: 2020,
+      genres: ['Comedy'],
+      rating: 9.5,
+      type: 'movie',
+      lastEpisode: null,
+    },
+    {
+      id: '1',
+      image: 'https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none',
+      title: 'On the Road',
+      year: 2020,
+      genres: ['Comedy'],
+      rating: 9.5,
+      type: 'movie',
+      lastEpisode: null,
+    },
+    {
+      id: '1',
+      image: 'https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none',
+      title: 'On the Road',
+      year: 2020,
+      genres: ['Comedy'],
+      rating: 9.5,
+      type: 'movie',
+      lastEpisode: null,
+    },
+    {
+      id: '1',
+      image: 'https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none',
+      title: 'On the Road',
+      year: 2020,
+      genres: ['Comedy'],
+      rating: 9.5,
+      type: 'movie',
+      lastEpisode: null,
+    },
+  ]
+  
+  return (
+    <div className="bg-gray-900 w-full h-full flex flex-column">
+      
+        <div className="main_area_margin">
+          <Menu />
         </div>
-      ))}
+        <div className="flex">
+          <DataView value = {mediaCards} itemTemplate = {itemTemplate} />
+        </div>
+    
+
+      
+
+      
+          
+   
+
+
     </div>
   );
-};
+}
 
 export default MainPage;

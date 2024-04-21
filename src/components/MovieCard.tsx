@@ -1,26 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-
+import React from 'react';
 import { Card } from 'primereact/card';
+import { Media } from '../types/index'
+import '../componentscss/Card.css';
 
-const MovieCard = () => {
-    const [cardData, setCardData] = useState([]);
-
-    // useEffect(async () => {
-    //     const response = await axios.get(
-    //         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-    //     );
-    //     setCardData(response.data)
-    // }, []);
-
+const MovieCard: React.FC<{ entry: Media }> = ({ entry }) => {
   return (
-    <div>
-        <Card className='card_size'>
+    <Card className='card_size'>
+      <img src={entry.image} alt={entry.title} /> {/* Добавляем src и alt для тега img */}
+      <span>{entry.rating}</span>
+      <span>{entry.title}</span>
+      <span>{entry.year}</span>
+      <span>{entry.genres.join(', ')}</span> {/* Преобразуем массив жанров в строку с разделителем */}
+    </Card>
+  );
+};
 
-        </Card>
-    </div>
-  )
-}
-
-export default MovieCard
-
+export default MovieCard;

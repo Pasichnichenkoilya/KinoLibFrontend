@@ -21,11 +21,11 @@ import "../src/normalize.css";
 const App = () => {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Menu />
+      <Navbar/>
+      
       <Routes>
         <Route index element={<MainPage />} />
-        <Route path="/" element={<MainPage />} />
+        <Route path="/1" element={<MainPage />} />
         <Route path="/movie" element={<MoviePage />} />
         <Route path="/serial" element={<SerialPage />} />
         <Route path="/cartoon-movie" element={<CartoonMoviePage />} />
