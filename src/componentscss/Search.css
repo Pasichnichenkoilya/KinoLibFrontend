@@ -1,0 +1,6 @@
+.search_bg{
+    background-color: #444444;
+}
+.placeholder-color::placeholder {
+    color: #ffffff71; 
+  }

@@ -3,9 +3,11 @@ import React, { useState } from 'react'
 import "../componentscss/Menu.css"
 
 import { Knob } from 'primereact/knob';
-import { Slider } from 'primereact/slider';
+import { Slider, SliderChangeEvent  } from 'primereact/slider';
 import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
+
+import axios from "axios";
 
 const Menu = () => {
 
@@ -14,15 +16,18 @@ const Menu = () => {
   const [selectChoises, setSelectChoises] = useState(null);
   const [value, setValue] = useState<[number, number]>([0, 10]);
 
+  interface Genre{
+    name: string;
+  }
 
-  const genres = [
+  const genres: Genre[] = [
     { name : 'First'},
     { name : 'Second'},
     { name : 'Third'}
   ]
 
   const choises = [
-    { name : 'За популярністю'},
+    { name : ' ⭐ За популярністю'},
     { name : 'За переглядами'},
     { name : 'За рейтингом'},
     { name : 'За новиною'},
@@ -30,9 +35,11 @@ const Menu = () => {
 
   ]
 
+  
+
   return (
     <div className='w-full h-10rem flex flex-row justify-content-center justify-content-between pt-2 '>
-        <div className='flex flex-column w-3 h-9rem  ml-8 mt-2 gap-3 pt-2 bg-red-500 '>
+        <div className='flex flex-column w-3 h-9rem  ml-8 mt-2 gap-3 pt-2 '>
             <Dropdown value={selectChoises} onChange={(e) => setSelectChoises(e.value)} 
                 options={choises} 
                 optionLabel="name" 
@@ -44,12 +51,12 @@ const Menu = () => {
                 options={genres} 
                 optionLabel="name"
                 display="chip"
-                placeholder="Select Cities" maxSelectedLabels={3}
+                filter placeholder="Select Cities" maxSelectedLabels={3}
                 className="w-full md:w-20rem genres border-round-3xl ml-8"
             />
             
         </div>
-        <div className='flex flex-row w-3 h-9rem mt-2 mr-4 '>
+        <div className='flex flex-row w-3 h-9rem mt-2 mr-8  align-items-center gap-8 justify-content-center'>
           <div className='flex flex-column align-items-center'>
             <Knob value={value1} onChange={(e) => setValue1(e.value)}
               min = {1980} 
@@ -59,9 +66,23 @@ const Menu = () => {
             />
             <label className='text-white'>Вибери рік</label>
           </div>
+          <div className='flex flex-column align-items-center gap-2'>
+            <Slider
+              value={value}
+              onChange={(e) => setValue(e.value as [number, number])}
+              range
+              className="w-14rem relative"
+            />
+            {/* Custom handle element */}
+            <div className="text-white relative flex flex-row gap-1 justify-content-center align-items-center">
+              <label className='text-white'>Рейтинг:</label> 
+              <span className="handle-value">{value[0]} - {value[1]}</span>
+            </div>
             
+          </div>
+          
             
-        
+    
         </div>
     </div>
   )

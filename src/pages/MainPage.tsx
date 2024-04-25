@@ -1,14 +1,17 @@
 import React, { ReactNode, useEffect, useState } from "react";
-
 import Menu from "../components/Menu";
-
 import { Card } from "primereact/card";
 import { DataView, DataViewLayoutOptions } from "primereact/dataview";
-
+import { Paginator } from 'primereact/paginator'; 
 import "../componentscss/MainPage.css";
 import MovieCard from "../components/MovieCard";
 import axios from "axios";
 import { Media } from "../types";
+import 'primeicons/primeicons.css';
+import { useParams, useNavigate } from "react-router-dom";
+
+
+
 
 const fetchAllCards = async (page: number): Promise<Media[]> => {
   const response = await axios.get(
@@ -18,16 +21,28 @@ const fetchAllCards = async (page: number): Promise<Media[]> => {
 };
 
 const MainPage = () => {
-  const [page, setPage] = useState(1);
+  const { page: pageParam } = useParams();
+  const navigate = useNavigate(); 
   const [mediaCards, setMediaCards] = useState<Media[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1); 
+
+  useEffect(() => {
+    if (pageParam === undefined || pageParam === "1") {
+      
+      setCurrentPage(1);
+      navigate("/"); 
+    } else {
+      setCurrentPage(Number(pageParam));
+    }
+  }, [pageParam, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const cards = await fetchAllCards(page);
+      const cards = await fetchAllCards(currentPage); 
       setMediaCards(cards);
     };
     fetchData();
-  }, [page]);
+  }, [currentPage]);
 
   const listTemplate = (items: Media[]): ReactNode[] => {
     if (!items || items.length === 0) return [];
@@ -37,91 +52,33 @@ const MainPage = () => {
     });
 
     return [
-      <div className="grid grid-nogutter justify-content-center p-5 gap-5">
+      <div className="grid grid-nogutter justify-content-center p-5 gap-3 bg-gray-900">
         {list}
       </div>,
     ];
   };
-
-  // const filmsList: Media[] = [
-  //   {
-  //     id: "1",
-  //     image:
-  //       "https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none",
-  //     title: "On the Road",
-  //     year: 2020,
-  //     genres: ["Comedy"],
-  //     rating: 9.5,
-  //     type: "movie",
-  //     lastEpisode: null,
-  //   },
-  //   {
-  //     id: "1",
-  //     image:
-  //       "https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none",
-  //     title: "On the Road",
-  //     year: 2020,
-  //     genres: ["Comedy"],
-  //     rating: 9.5,
-  //     type: "movie",
-  //     lastEpisode: null,
-  //   },
-  //   {
-  //     id: "1",
-  //     image:
-  //       "https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none",
-  //     title: "On the Road",
-  //     year: 2020,
-  //     genres: ["Comedy"],
-  //     rating: 9.5,
-  //     type: "movie",
-  //     lastEpisode: null,
-  //   },
-  //   {
-  //     id: "1",
-  //     image:
-  //       "https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none",
-  //     title: "On the Road",
-  //     year: 2020,
-  //     genres: ["Comedy"],
-  //     rating: 9.5,
-  //     type: "movie",
-  //     lastEpisode: null,
-  //   },
-  //   {
-  //     id: "1",
-  //     image:
-  //       "https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none",
-  //     title: "On the Road",
-  //     year: 2020,
-  //     genres: ["Comedy"],
-  //     rating: 9.5,
-  //     type: "movie",
-  //     lastEpisode: null,
-  //   },
-  //   {
-  //     id: "1",
-  //     image:
-  //       "https://i.guim.co.uk/img/media/c2fc5f6e70d6ac05b83b1f574f1e6e61bb27ef0d/0_48_2133_1280/master/2133.jpg?width=620&dpr=1&s=none",
-  //     title: "On the Road",
-  //     year: 2020,
-  //     genres: ["Comedy"],
-  //     rating: 9.5,
-  //     type: "movie",
-  //     lastEpisode: null,
-  //   },
-  // ];
 
   return (
     <div className="bg-gray-900 w-full h-full flex flex-column">
       <div className="main_area_margin">
         <Menu />
       </div>
-      <div className="flex">
+      <div className="flex flex-column">
         <DataView
           value={mediaCards}
           listTemplate={listTemplate}
           layout={"grid"}
+        />
+         <Paginator // need to fix or change
+          first={(currentPage) * 10} // Calculate first record index based on current page
+          rows={10}
+          totalRecords={5730} // need to make it auto
+          onPageChange={(e) => {
+            setCurrentPage(e.page);
+            navigate(`/${e.page}`); // Update URL when page changes
+          }}
+          pageLinkSize={6} 
+          className="bg-gray-900 border-none"
         />
       </div>
     </div>

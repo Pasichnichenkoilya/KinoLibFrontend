@@ -17,6 +17,7 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
 
 import "../src/normalize.css";
+import CardDetail from "./components/CardDetail";
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
       
       <Routes>
         <Route index element={<MainPage />} />
-        <Route path="/1" element={<MainPage />} />
+        <Route path="/:page?" element={<MainPage />} />
         <Route path="/movie" element={<MoviePage />} />
         <Route path="/serial" element={<SerialPage />} />
         <Route path="/cartoon-movie" element={<CartoonMoviePage />} />
