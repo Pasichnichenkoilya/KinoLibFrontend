@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import MainPage from "./pages/MainPage";
@@ -17,13 +15,12 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
 
 import "../src/normalize.css";
-import CardDetail from "./components/CardDetail";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Navbar/>
-      
+      <Navbar />
+
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="/:page?" element={<MainPage />} />
