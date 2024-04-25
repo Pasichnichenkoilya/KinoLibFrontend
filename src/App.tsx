@@ -7,7 +7,6 @@ import CartoonMoviePage from "./pages/CartoonMoviePage";
 import AnimePage from "./pages/AnimePage";
 
 import Navbar from "./components/Navbar";
-import Menu from "./components/Menu";
 
 import "primeflex/primeflex.css";
 import "primereact/resources/primereact.min.css";
@@ -20,7 +19,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="/:page?" element={<MainPage />} />

@@ -5,48 +5,41 @@ import { Paginator } from "primereact/paginator";
 import "../styles/MainPage.css";
 import MovieCard from "../components/MovieCard";
 import axios from "axios";
-import { Media } from "../types";
+import { Media, MediaResponse } from "../types";
 import "primeicons/primeicons.css";
 import { useParams, useNavigate } from "react-router-dom";
 
-const fetchAllCards = async (page: number): Promise<Media[]> => {
+const fetchAllCards = async (page: number): Promise<MediaResponse> => {
   const response = await axios.get(
     `https://kinolib-backend-homer.fly.dev/parse/all/${page}`
   );
-  return response.data.media;
+  return response.data;
 };
 
 const MainPage = () => {
   const { page: pageParam } = useParams();
   const navigate = useNavigate();
   const [mediaCards, setMediaCards] = useState<Media[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  useEffect(() => {
-    if (pageParam === undefined || pageParam === "1") {
-      setCurrentPage(1);
-      navigate("/");
-    } else {
-      setCurrentPage(Number(pageParam));
-    }
-  }, [pageParam, navigate]);
+  const [countOfPages, setCountOfPages] = useState(0);
+  const currentPage = parseInt(pageParam || "1");
 
   useEffect(() => {
     fetchAllCards(currentPage)
-      .then((cards) => setMediaCards(cards))
+      .then(({ media, countOfPages }) => {
+        setMediaCards(media);
+        setCountOfPages(countOfPages);
+      })
       .catch((error) => console.log(error));
   }, [currentPage]);
 
   const listTemplate = (items: Media[]): ReactNode[] => {
     if (!items || items.length === 0) return [];
 
-    const list = items.map((media, index) => {
-      return <MovieCard entry={media} key={index} />;
-    });
-
     return [
-      <div className="grid grid-nogutter justify-content-center p-5 gap-3 bg-gray-900">
-        {list}
+      <div className="grid grid-nogutter justify-content-center p-5 gap-3 bg-gray-900 cards-grid mx-auto">
+        {items.map((media, index) => (
+          <MovieCard entry={media} key={index} />
+        ))}
       </div>,
     ];
   };
@@ -64,11 +57,10 @@ const MainPage = () => {
         />
         <Paginator // need to fix or change
           first={currentPage * 10} // Calculate first record index based on current page
-          rows={10}
-          totalRecords={5730} // need to make it auto
+          rows={20}
+          totalRecords={countOfPages}
           onPageChange={(e) => {
-            setCurrentPage(e.page);
-            navigate(`/${e.page}`); // Update URL when page changes
+            navigate(`/${e.page + 1}`);
           }}
           pageLinkSize={6}
           className="bg-gray-900 border-none"

@@ -23,7 +23,9 @@ const MovieCard: React.FC<{ entry: Media }> = ({ entry }) => {
   }
 
   return (
-    <div className="card_size relative" onClick={handleCardClick}>
+    <div
+      className="card_size relative cursor-pointer"
+      onClick={handleCardClick}>
       <img src={entry.image} alt={entry.title} className="card_img relative" />
       <div className="w-3rem h-1rem bg-gray-900 absolute top-0 right-0 m-2 flex flex-row justify-content-center align-items-center border-round opacity-70 gap-1">
         <span style={ratingColorStyle}>{entry.rating}</span>
@@ -43,7 +45,7 @@ const MovieCard: React.FC<{ entry: Media }> = ({ entry }) => {
         </span>
         <div className="flex flex-row gap-1">
           <span className="text_title_color">{entry.year} |</span>
-          <span className="text_title_color">{entry.genres.join(" | ")}</span>
+          <span className="text_title_color">{entry.genres.join(" • ")}</span>
         </div>
       </div>
     </div>

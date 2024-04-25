@@ -24,7 +24,7 @@ const Menu = () => {
   ];
 
   const choises = [
-    { name: " ⭐ За популярністю" },
+    { name: "⭐ За популярністю" },
     { name: "За переглядами" },
     { name: "За рейтингом" },
     { name: "За новиною" },
@@ -42,7 +42,6 @@ const Menu = () => {
           placeholder="Select a choise"
           className="w-full md:w-20rem genres border-round-3xl ml-8 relative "
         />
-
         <MultiSelect
           value={selectedGenres}
           onChange={(e) => setSelectedGenres(e.value)}
@@ -70,6 +69,8 @@ const Menu = () => {
         <div className="flex flex-column align-items-center gap-2">
           <Slider
             value={value}
+            max={10}
+            min={0}
             onChange={(e) => setValue(e.value as [number, number])}
             range
             className="w-14rem relative"

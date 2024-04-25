@@ -8,3 +8,8 @@ export type Media = {
   type: string;
   lastEpisode: string | null;
 };
+
+export type MediaResponse = {
+  media: Media[];
+  countOfPages: number;
+};

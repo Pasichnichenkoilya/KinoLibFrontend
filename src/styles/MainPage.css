@@ -1,3 +1,15 @@
-.main_area_margin{
-    margin-top: 5.5%;
+.main_area_margin {
+  margin-top: 5.5%;
+}
+
+html {
+  background: #18181b;
+}
+
+.cards-grid {
+  max-width: 110rem;
+}
+
+.p-dataview-content {
+  background: #18181b;
 }

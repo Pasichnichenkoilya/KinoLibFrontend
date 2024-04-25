@@ -9,6 +9,13 @@ import Search from "./Search";
 
 const Navbar = () => {
   const [checked, setChecked] = useState(false);
+  const menuItems = [
+    { label: "всі", url: "/" },
+    { label: "фільми", url: "/movies" },
+    { label: "серіали", url: "/series" },
+    { label: "мультфільми", url: "/cartoons" },
+    { label: "аніме", url: "/anime" },
+  ];
 
   return (
     <div className="flex flex-row justify-content-center w-full ">
@@ -35,48 +42,22 @@ const Navbar = () => {
             />
           </div>
           <div className="w-full mt-1">
-            <div className=" ml-auto mr-auto">
+            <div className="ml-auto mr-auto">
               <div className="test_under_2 ml-auto mr-auto">
                 <div className="h-8rem  ml-5 mr-5  flex flex-column justify-content-center gap-3">
                   <div>
                     <Search />
                   </div>
                   <div className="flex flex-rom justify-content-between">
-                    <Link to="/">
-                      <Button
-                        className="text-500 hover:bg-bluegray-400 border-none uppercase"
-                        label="всі"
-                        text
-                      />
-                    </Link>
-                    <Link to="/movie">
-                      <Button
-                        className="text-500 uppercase"
-                        label="фільми"
-                        text
-                      />
-                    </Link>
-                    <Link to="/serial">
-                      <Button
-                        className="text-500 uppercase"
-                        label="серіали"
-                        text
-                      />
-                    </Link>
-                    <Link to="/cartoon-movie">
-                      <Button
-                        className="text-500 uppercase"
-                        label="мультфільми"
-                        text
-                      />
-                    </Link>
-                    <Link to="/anime">
-                      <Button
-                        className="text-500 uppercase"
-                        label="аніме"
-                        text
-                      />
-                    </Link>
+                    {menuItems.map((item) => (
+                      <Link key={item.url} to={item.url}>
+                        <Button
+                          className="text-500 uppercase"
+                          label={item.label}
+                          text
+                        />
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
