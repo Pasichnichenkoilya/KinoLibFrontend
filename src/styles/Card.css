@@ -1,7 +1,7 @@
 .card_size {
     width: 256px;
     height: 370px;
-    transition: 1s;
+    transition: 0.6s;
 }
 
 .card_size:hover {

@@ -3,13 +3,14 @@ import { Media } from "../types/index";
 
 import "../styles/Card.css";
 import "primeicons/primeicons.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MovieCard: React.FC<{ entry: Media }> = ({ entry }) => {
-  const handleCardClick = () => {
-    <Link to={`/${entry.id}`}></Link>;
-  };
+  const navigate = useNavigate(); // Import and use useNavigate hook
 
+  const handleCardClick = () => {
+    navigate(`/detail${entry.id}`); 
+  };
   let ratingColorStyle = {};
 
   if (entry.rating !== null) {

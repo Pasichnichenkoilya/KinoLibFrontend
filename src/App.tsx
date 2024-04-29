@@ -1,11 +1,11 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 import MainPage from "./pages/MainPage";
 import MoviePage from "./pages/MoviePage";
 import SerialPage from "./pages/SerialPage";
 import CartoonMoviePage from "./pages/CartoonMoviePage";
 import AnimePage from "./pages/AnimePage";
-
+import CardDetail from "./components/CardDetail";
 import Navbar from "./components/Navbar";
 
 import "primeflex/primeflex.css";
@@ -22,9 +22,10 @@ const App = () => {
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="/:page?" element={<MainPage />} />
-        <Route path="/movie" element={<MoviePage />} />
-        <Route path="/serial" element={<SerialPage />} />
-        <Route path="/cartoon-movie" element={<CartoonMoviePage />} />
+        <Route path="/detail/:season/:episode?" element={<CardDetail />} />
+        <Route path="/movies" element={<MoviePage />} />
+        <Route path="/series" element={<SerialPage />} />
+        <Route path="/cartoons" element={<CartoonMoviePage />} />
         <Route path="/anime" element={<AnimePage />} />
       </Routes>
     </BrowserRouter>
