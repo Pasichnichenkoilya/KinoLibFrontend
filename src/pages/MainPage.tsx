@@ -46,7 +46,7 @@ const MainPage = () => {
 
   return (
     <div className="bg-gray-900 w-full h-full flex flex-column">
-      <div className="main_area_margin">
+      <div className="main_area_margin relative">
         <Menu />
       </div>
       <div className="flex flex-column">

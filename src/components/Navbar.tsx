@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex flex-row justify-content-center w-full ">
+    <div className="flex flex-row justify-content-center w-full fixed nav_index">
       <div className="h-6rem width_nav nav_bg  borders flex flex-row align-items-center justify-content-between fixed">
         <div className="w-2 h-2rem flex flex-row align-items-center ml-6">
           <img
@@ -42,7 +42,7 @@ const Navbar = () => {
             />
           </div>
           <div className="w-full mt-1">
-            <div className="ml-auto mr-auto">
+            <div className="">
               <div className="test_under_2 ml-auto mr-auto">
                 <div className="h-8rem  ml-5 mr-5  flex flex-column justify-content-center gap-3">
                   <div>

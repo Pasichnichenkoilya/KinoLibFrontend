@@ -70,3 +70,7 @@
 .switcher{
     width: 80px;
 }
+
+.nav_index{
+    z-index: 9999;
+  }

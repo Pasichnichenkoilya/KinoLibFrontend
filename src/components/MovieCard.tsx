@@ -33,7 +33,7 @@ const MovieCard: React.FC<{ entry: Media }> = ({ entry }) => {
       </div>
 
       <div className="w-10rem h-1rem bg-gray-900 top-0 left-0 absolute m-2 flex flex-row align-items-center justify-content-center gap-1 border-round opacity-70">
-        <span className="pi pi-camera text-white"></span>
+        <img src={require("../images/film-outline.png")} className="h-1rem"></img>
         <span className="text-white text-overflow-ellipsis white-space-nowrap overflow-hidden">
           {entry.lastEpisode}
         </span>
