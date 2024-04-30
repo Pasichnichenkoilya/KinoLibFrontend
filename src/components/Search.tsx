@@ -1,34 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
+import axios from "axios";
 import "../styles/Search.css";
+
+const fetchAllCards = async (query: string) => {
+  const response = await axios.get(
+    `https://kinolib-backend-homer.fly.dev/parse/all/?query=${query}`
+  );
+  return response.data;
+};
 
 const Search = () => {
   const [value, setValue] = useState<string>("");
   const [suggestions, setSuggestions] = useState<{ label: string; value: string; }[]>([]);
-  const [isListVisible, setIsListVisible] = useState<boolean>(false); // Состояние для отслеживания видимости списка
+  const [isListVisible, setIsListVisible] = useState<boolean>(false);
 
-  const staticSuggestions = [
-    { label: "Фильм 1", value: "Фильм 1" },
-    { label: "Фильм 2", value: "Фильм 2" },
-    { label: "Фильм 3", value: "Фильм 3" },
-    { label: "Фильм 4", value: "Фильм 4" },
-    { label: "Фильм 5", value: "Фильм 5" }
-  ];
+  useEffect(() => {
+    if (value) {
+      fetchAllCards(value).then((data) => {
+        setSuggestions(data.media);
+        setIsListVisible(true);
+      });
+    } else {
+      setSuggestions([]);
+      setIsListVisible(false);
+    }
+  }, [value]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(value);
-
-    // Фильтрация предложений на основе введенного значения
-    const filteredSuggestions = staticSuggestions.filter(suggestion =>
-      suggestion.label.toLowerCase().includes(value.toLowerCase())
-    );
-    setSuggestions(filteredSuggestions);
-
-    // Установка видимости списка в зависимости от наличия фильтрованных предложений
-    setIsListVisible(value.trim() !== '' && filteredSuggestions.length > 0);
   };
 
   return (
