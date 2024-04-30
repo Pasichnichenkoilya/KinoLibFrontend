@@ -4,22 +4,23 @@ import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import axios from "axios";
 import "../styles/Search.css";
+import { Suggestion } from "../types";
 
-const fetchAllCards = async (query: string) => {
+const fetchSearch = async (query: string) => {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/all/?query=${query}`
+    `https://kinolib-backend-homer.fly.dev/parse/search/${query}`
   );
   return response.data;
 };
 
 const Search = () => {
-  const [value, setValue] = useState<string>("");
-  const [suggestions, setSuggestions] = useState<{ label: string; value: string; }[]>([]);
-  const [isListVisible, setIsListVisible] = useState<boolean>(false);
+  const [value, setValue] = useState("");
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [isListVisible, setIsListVisible] = useState(false);
 
   useEffect(() => {
     if (value) {
-      fetchAllCards(value).then((data) => {
+      fetchSearch(value).then((data) => {
         setSuggestions(data.media);
         setIsListVisible(true);
       });
@@ -46,7 +47,6 @@ const Search = () => {
           onChange={handleInputChange}
         />
       </IconField>
-      {/* Отображение предложений, только если список видим */}
       {isListVisible && (
         <div className="suggestion-list-wrapper">
           <div className="suggestion-list">

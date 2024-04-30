@@ -13,3 +13,8 @@ export type MediaResponse = {
   media: Media[];
   countOfPages: number;
 };
+
+export type Suggestion = {
+  label: string;
+  value: string;
+};
