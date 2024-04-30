@@ -89,3 +89,13 @@
 body.no-scroll {
   overflow: hidden;
 }
+
+.clear-icon {
+  position: absolute;
+  right: 3%; /* установка отступа справа в процентах от ширины родительского контейнера */
+  top: 25%; /* установка отступа сверху в процентах от высоты родительского контейнера */
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 150%;
+}
+

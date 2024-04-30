@@ -1,4 +1,3 @@
-// Search.tsx
 import React, { useState, useEffect } from "react";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
@@ -71,6 +70,11 @@ const Search = () => {
     document.body.classList.remove("no-scroll");
   };
 
+  const clearInput = () => {
+    setValue("");
+    setIsListVisible(false);
+  };
+
   return (
     <div className={`search-container ${isFocused ? 'focused' : ''}`}>
       <IconField iconPosition="left" className="input-container">
@@ -84,6 +88,9 @@ const Search = () => {
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
         />
+        {value && (
+          <span className="pi pi-times-circle clear-icon" onClick={clearInput}></span>
+        )}
       </IconField>
       {isListVisible && (
         <div className="suggestion-list-wrapper">
