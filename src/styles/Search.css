@@ -16,7 +16,7 @@
   z-index: 1000;
   max-height: 555px;
   overflow-y: auto;
-  width: 440px;
+  width: 100%;
 }
 
 .suggestion-item {
