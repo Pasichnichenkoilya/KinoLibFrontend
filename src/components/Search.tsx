@@ -4,31 +4,55 @@ import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import axios from "axios";
 import "../styles/Search.css";
-import { Suggestion } from "../types";
+import { Suggestion, Media } from "../types";
 
-const fetchSearch = async (query: string) => {
+const fetchSearch = async (search: string) => {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/search/${query}`
+    `https://kinolib-backend-homer.fly.dev/parse/search/${search}`
   );
   return response.data;
 };
 
-const Search = () => {
-  const [value, setValue] = useState("");
-  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-  const [isListVisible, setIsListVisible] = useState(false);
+const useDebounce = (value: string, delay: number) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
-    if (value) {
-      fetchSearch(value).then((data) => {
-        setSuggestions(data.media);
-        setIsListVisible(true);
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
+
+const Search = () => {
+  const [value, setValue] = useState("");
+  const [suggestions, setSuggestions] = useState<Media[]>([]);
+  const [isListVisible, setIsListVisible] = useState(false);
+
+  const debouncedSearchValue = useDebounce(value, 100);
+
+  useEffect(() => {
+    if (debouncedSearchValue.trim()) {
+      fetchSearch(debouncedSearchValue).then((data) => {
+        if (data && Array.isArray(data.media)) {
+          setSuggestions(data.media);
+          setIsListVisible(true);
+        } else {
+          console.error('Unexpected data format:', data);
+          setSuggestions([]);
+          setIsListVisible(false);
+        }
       });
     } else {
       setSuggestions([]);
       setIsListVisible(false);
     }
-  }, [value]);
+  }, [debouncedSearchValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -50,9 +74,9 @@ const Search = () => {
       {isListVisible && (
         <div className="suggestion-list-wrapper">
           <div className="suggestion-list">
-            {suggestions.map((suggestion, index) => (
-              <div key={index} className="suggestion-item">
-                {suggestion.label}
+            {suggestions.map((suggestion: Media) => (
+              <div key={suggestion.id} className="suggestion-item">
+                {suggestion.title}
               </div>
             ))}
           </div>
