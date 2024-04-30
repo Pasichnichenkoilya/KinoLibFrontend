@@ -1,10 +1,11 @@
+// Search.tsx
 import React, { useState, useEffect } from "react";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import axios from "axios";
 import "../styles/Search.css";
-import { Suggestion, Media } from "../types";
+import { Media } from "../types";
 
 const fetchSearch = async (search: string) => {
   const response = await axios.get(
@@ -33,6 +34,7 @@ const Search = () => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState<Media[]>([]);
   const [isListVisible, setIsListVisible] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const debouncedSearchValue = useDebounce(value, 100);
 
@@ -59,9 +61,19 @@ const Search = () => {
     setValue(value);
   };
 
+  const handleInputFocus = () => {
+    setIsFocused(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const handleInputBlur = () => {
+    setIsFocused(false);
+    document.body.classList.remove("no-scroll");
+  };
+
   return (
-    <div>
-      <IconField iconPosition="left">
+    <div className={`search-container ${isFocused ? 'focused' : ''}`}>
+      <IconField iconPosition="left" className="input-container">
         <InputIcon className="pi pi-search text-white" />
         <InputText
           value={value}
@@ -69,6 +81,8 @@ const Search = () => {
           className="w-full border-round-3xl search_bg border-none placeholder-color h-3rem custom-input"
           style={{ color: "white" }}
           onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
         />
       </IconField>
       {isListVisible && (
