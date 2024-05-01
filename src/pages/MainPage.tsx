@@ -8,6 +8,7 @@ import axios from "axios";
 import { Media, MediaResponse } from "../types";
 import "primeicons/primeicons.css";
 import { useParams, useNavigate } from "react-router-dom";
+import MovieSkeleton from "../components/MovieSkeleton";
 
 const fetchAllCards = async (page: number): Promise<MediaResponse> => {
   const response = await axios.get(
@@ -22,12 +23,16 @@ const MainPage = () => {
   const [mediaCards, setMediaCards] = useState<Media[]>([]);
   const [countOfPages, setCountOfPages] = useState(0);
   const currentPage = parseInt(pageParam || "1");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
+
     fetchAllCards(currentPage)
       .then(({ media, countOfPages }) => {
         setMediaCards(media);
         setCountOfPages(countOfPages);
+        setIsLoading(false);
       })
       .catch((error) => console.log(error));
   }, [currentPage]);
@@ -38,8 +43,12 @@ const MainPage = () => {
     return [
       <div className="grid grid-nogutter justify-content-center p-5 gap-3 bg-gray-900 cards-grid mx-auto">
         {items.map((media, index) => (
+        isLoading ? (
+          <MovieSkeleton/>
+        ) : (
           <MovieCard entry={media} key={index} />
-        ))}
+        )
+      ))}
       </div>,
     ];
   };
