@@ -41,14 +41,16 @@ const MainPage = () => {
     if (!items || items.length === 0) return [];
 
     return [
-      <div className="grid grid-nogutter justify-content-center p-5 gap-3 bg-gray-900 cards-grid mx-auto">
-        {items.map((media, index) => (
-        isLoading ? (
-          <MovieSkeleton/>
-        ) : (
-          <MovieCard entry={media} key={index} />
-        )
-      ))}
+      <div
+        key={"cards-container"}
+        className="grid grid-nogutter justify-content-center p-5 gap-3 bg-gray-900 cards-grid mx-auto">
+        {items.map((media) =>
+          isLoading ? (
+            <MovieSkeleton key={`skeleton-${media.id}`} />
+          ) : (
+            <MovieCard entry={media} key={media.id} />
+          )
+        )}
       </div>,
     ];
   };

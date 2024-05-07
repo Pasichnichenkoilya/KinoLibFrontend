@@ -18,3 +18,23 @@ export type Suggestion = {
   label: string;
   value: string;
 };
+
+export type SeasonInfo = {
+  seasonId: string;
+  seasonNumber: string;
+  episodes: string[];
+};
+
+export type Details = {
+  filmPath: string[];
+  titleUa: string;
+  titleOriginal: string;
+  description: string;
+  image: string;
+  rating: number;
+  country: string;
+  time: string;
+  release: string;
+  genres: string[];
+  seasonsInfo: SeasonInfo[];
+};

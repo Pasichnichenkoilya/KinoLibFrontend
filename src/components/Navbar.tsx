@@ -34,13 +34,13 @@ const Navbar = () => {
           <label className="text-white ml-5 text-base uppercase">про нас</label>
         </div>
         <div className="w-6 h-5rem flex flex-column align-items-center ">
-          <div>
+          <Link to={"/"}>
             <img
               alt="KinoLibLogo.png"
               src={require("../images/KinoLibLogo.png")}
               className="h-5rem  ml-auto mr-auto"
             />
-          </div>
+          </Link>
           <div className="w-full mt-1">
             <div className="">
               <div className="test_under_2 ml-auto mr-auto">
@@ -50,12 +50,11 @@ const Navbar = () => {
                   </div>
                   <div className="flex flex-rom justify-content-between">
                     {menuItems.map((item) => (
-                      <Link key={item.url} to={item.url}>
-                        <Button
-                          className="text-500 uppercase"
-                          label={item.label}
-                          text
-                        />
+                      <Link
+                        key={item.url}
+                        to={item.url}
+                        className="text-500 uppercase px-3 py-2 hover:bg-black-alpha-30 border-round-xl">
+                        {item.label}
                       </Link>
                     ))}
                   </div>
