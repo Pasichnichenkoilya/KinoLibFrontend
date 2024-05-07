@@ -80,7 +80,7 @@ const CardDetails = () => {
             alt="details image"
             className="border-round-3xl shadow-5 w-full max-h-26rem"
           />
-          <p>
+          <div className="my-3">
             <div className="flex justify-content-center">
               {[...Array(10)].map((_, index) => (
                 <span
@@ -99,7 +99,7 @@ const CardDetails = () => {
               {details.rating}
               {"/10"}
             </div>
-          </p>
+          </div>
           <div className="separator-container flex flex-column gap-1">
             <div className="separatable py-2 mt-1 flex justify-content-between">
               <span className="flex-1 left-separatable">Країна:</span>
@@ -129,7 +129,9 @@ const CardDetails = () => {
           </div>
           <div className="flex flex-wrap gap-2">
             {details.genres.map((genre) => (
-              <span className="border-2 border-round-3xl py-2 px-3 genre-pill">
+              <span
+                key={genre}
+                className="border-2 border-round-3xl py-2 px-3 genre-pill">
                 {genre}
               </span>
             ))}
