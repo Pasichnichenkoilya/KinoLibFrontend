@@ -8,7 +8,6 @@ import "../styles/Menu.css";
 
 const Menu = () => {
   const [value1, setValue1] = useState(1990);
-  const [value, setValue] = useState<[number, number]>([0, 10]);
 
   return (
     <div className="w-full h-10rem flex flex-row justify-content-center justify-content-between relative">
