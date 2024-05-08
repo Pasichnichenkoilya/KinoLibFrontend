@@ -73,3 +73,14 @@
 .nav_index {
   z-index: 9999;
 }
+.p-button{
+  background-color:transparent;
+  
+
+}
+.p-button:active{
+  border-color: transparent;
+}
+.p-button:focus{
+  box-shadow: none;
+}
