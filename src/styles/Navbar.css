@@ -1,0 +1,75 @@
+@import "primeflex/primeflex.css";
+
+.borders {
+  border-bottom-left-radius: 57.5px;
+  border-bottom-right-radius: 57.5px;
+}
+
+.width_nav {
+  width: 86%;
+}
+
+.inst_img {
+  width: 41px;
+  height: 41px;
+}
+
+.nav_bg {
+  box-shadow: inset 1px 1px 7px 4.5px #161616;
+  background-color: #444444;
+}
+
+.test_under {
+  background-color: #ffffff;
+  height: 60px;
+  width: 787px;
+  margin-top: 60px;
+}
+
+.checks {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 255, 255);
+  border-top-right-radius: 50px;
+  border-right: 3px solid #000;
+  border-top: 2px solid #000;
+  margin-top: 55px;
+}
+.checks2 {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 255, 255);
+  border-top-left-radius: 50px;
+  border-left: 3px solid #000;
+  border-top: 2px solid #000;
+  margin-top: 55px;
+  margin-left: 721px;
+}
+
+.test_under_2 {
+  background: rgb(68, 68, 68);
+  background: linear-gradient(
+    180deg,
+    rgba(68, 68, 68, 1) 0%,
+    rgba(22, 22, 22, 1) 100%
+  );
+  width: 100%;
+  height: 30%;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-left: 3px solid #000; /* Граница слева, цвет #000 (черный) */
+  border-right: 3px solid #000; /* Граница справа, цвет #000 (черный) */
+  border-bottom: 3px solid #000;
+}
+
+.hover-text:hover {
+  color: aqua;
+}
+
+.switcher {
+  width: 80px;
+}
+
+.nav_index {
+  z-index: 9999;
+}

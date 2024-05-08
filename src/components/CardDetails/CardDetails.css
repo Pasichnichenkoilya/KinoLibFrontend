@@ -1,0 +1,41 @@
+.details-container {
+  max-width: 80rem;
+  padding-top: 14rem;
+  color: white;
+}
+
+.breadcrumb-previous {
+  color: #6a6a6a;
+}
+
+.left-separatable,
+.description {
+  color: #aeaeae;
+}
+
+.details-wrapper,
+.separatable {
+  background: #1b1b1b;
+}
+
+.separator-container {
+  background: #2b2b2b;
+}
+
+.genre-pill {
+  border-color: #2b2b2b;
+}
+
+.player-container {
+  aspect-ratio: 16 / 9;
+}
+
+.min-h-26rem {
+  min-height: auto;
+}
+
+@media (min-width: 992px) {
+  .min-h-26rem {
+    min-height: 26rem;
+  }
+}
