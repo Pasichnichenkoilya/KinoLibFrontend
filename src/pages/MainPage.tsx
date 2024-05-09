@@ -10,6 +10,7 @@ import Menu from "../components/Menu";
 import MovieCard from "../components/MovieCard";
 import { Media, MediaResponse } from "../types";
 import MovieSkeleton from "../components/MovieSkeleton";
+import "../styles/Paginator.css";
 
 import "primeicons/primeicons.css";
 
@@ -22,10 +23,18 @@ const fetchAllCards = async (page: number): Promise<MediaResponse> => {
   return response.data;
 };
 
+const fetchFilter = async (page: number): Promise<MediaResponse> => {
+  const response = await axios.get(
+    `https://kinolib-backend-homer.fly.dev/parse/filter/?rating=1-5`
+  );
+  return response.data;
+};
+
 const MainPage = () => {
   const { page: pageParam } = useParams();
   const navigate = useNavigate();
   const [mediaCards, setMediaCards] = useState<Media[]>([]);
+  const [filterCards, setFilterCards] = useState<Media[]>([]); //..
   const [countOfPages, setCountOfPages] = useState(0);
   const currentPage = parseInt(pageParam || "1");
   const [isLoading, setIsLoading] = useState(true);
@@ -71,15 +80,15 @@ const MainPage = () => {
           listTemplate={listTemplate}
           layout={"grid"}
         />
-        <Paginator // need to fix or change
-          first={currentPage * 10} // Calculate first record index based on current page
+        <Paginator
+          first={(currentPage - 1) * 20}
           rows={20}
-          totalRecords={countOfPages}
+          totalRecords={countOfPages * 20}
           onPageChange={(e) => {
             navigate(`/${e.page + 1}`);
           }}
           pageLinkSize={6}
-          className="bg-gray-900 border-none"
+          className="bg-gray-900 p-paginator-page:flex flex-row"
         />
       </div>
     </div>

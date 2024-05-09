@@ -10,7 +10,13 @@ import "primeicons/primeicons.css";
 
 import "../styles/Navbar.css";
 
+interface MenuItem {
+  label: string;
+  url: string;
+}
+
 const Navbar = () => {
+  const [activeButton, setActiveButton] = useState<string>("");
   const [checked, setChecked] = useState(false);
   const menuItems = [
     { label: "всі", url: "/" },
@@ -20,6 +26,10 @@ const Navbar = () => {
     { label: "мультсеріали", url: "/cartoon-series" },
     { label: "аніме", url: "/anime" },
   ];
+
+  const handleButtonClick = (label: string) => {
+    setActiveButton(label);
+  };
 
   return (
     <div className="flex flex-row justify-content-center w-full fixed nav_index">
@@ -53,12 +63,21 @@ const Navbar = () => {
                     <Search />
                   </div>
                   <div className="flex flex-rom justify-content-between">
-                    {menuItems.map((item) => (
+                    {menuItems.map((item: MenuItem) => (
                       <Link
                         key={item.url}
                         to={item.url}
-                        className="text-500 uppercase px-3 py-2 hover:bg-black-alpha-30 border-round-xl">
-                        {item.label}
+                        >
+                          <Button className={`text-500 uppercase border-noround hover:text-white ${
+                          activeButton === item.label
+                            ? "text-white"
+                            : ""
+                        }`}
+                            label={item.label}
+                          text
+                          onClick={() => handleButtonClick(item.label)}/>
+                          
+                        
                       </Link>
                     ))}
                   </div>
