@@ -5,7 +5,7 @@ import MoviePage from "./pages/MoviePage";
 import SerialPage from "./pages/SerialPage";
 import CartoonMoviePage from "./pages/CartoonMoviePage";
 import AnimePage from "./pages/AnimePage";
-import CardDetails from "./components/CardDetails/CardDetails";
+import CardDetails from "./pages/CardDetails/CardDetails";
 import Navbar from "./components/Navbar";
 
 import "primeflex/primeflex.css";
@@ -21,12 +21,15 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route index element={<MainPage />} />
-        <Route path="/:page?" element={<MainPage />} />
-        <Route path="/details/:season/:episode?" element={<CardDetails />} />
-        <Route path="/movies" element={<MoviePage />} />
-        <Route path="/series" element={<SerialPage />} />
-        <Route path="/cartoons" element={<CartoonMoviePage />} />
-        <Route path="/anime" element={<AnimePage />} />
+        <Route
+          path="/details/:id/:season?/:episode?"
+          element={<CardDetails />}
+        />
+        <Route path="/:page?/:page?" element={<MainPage />} />
+        <Route path="/movies/:page?" element={<MoviePage />} />
+        <Route path="/series/:page?" element={<SerialPage />} />
+        <Route path="/cartoons/:page?" element={<CartoonMoviePage />} />
+        <Route path="/anime/:page?" element={<AnimePage />} />
       </Routes>
     </BrowserRouter>
   );

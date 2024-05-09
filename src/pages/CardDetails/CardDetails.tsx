@@ -1,19 +1,22 @@
-import { Link, useLocation } from "react-router-dom";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import "./CardDetails.css";
+
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
+
 import { Details } from "../../types";
+
+import "./CardDetails.css";
 
 const fetchDetails = async (mediaId: string): Promise<Details> => {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/details${mediaId}`
+    `https://kinolib-backend-homer.fly.dev/parse/details/${mediaId}`
   );
   return response.data;
 };
 
 const fetchPlayer = async (mediaId: string): Promise<string> => {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/player-url${mediaId}`
+    `https://kinolib-backend-homer.fly.dev/parse/player-url/${mediaId}`
   );
   return response.data.playerUrl;
 };
@@ -33,19 +36,19 @@ const CardDetails = () => {
     seasonsInfo: [],
   });
   const [playerUrl, setPlayer] = useState("");
-  const location = useLocation();
+  const { id, season, episode } = useParams();
 
-  const mediaId = location.pathname.replace("details/", "");
   const [mainBreadcrumb, mediaBreadcrumb, idBreadcrumb] = details.filmPath;
 
   useEffect(() => {
-    fetchDetails(mediaId)
+    fetchDetails(`${id}/${season || ""}`)
       .then((details) => setDetails(details))
-      .catch();
+      .catch((e) => console.log(e));
 
-    fetchPlayer(mediaId)
+    fetchPlayer(`${id}/${season || ""}/${episode || "episode-1"}`)
       .then((playerUrl) => setPlayer(playerUrl))
-      .catch();
+      .catch((e) => console.log(e));
+
     window.scrollTo(0, 0);
   }, []);
 
