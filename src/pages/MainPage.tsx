@@ -1,14 +1,20 @@
 import { ReactNode, useEffect, useState } from "react";
-import Menu from "../components/Menu";
+
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { DataView } from "primereact/dataview";
 import { Paginator } from "primereact/paginator";
-import "../styles/MainPage.css";
+
+import Menu from "../components/Menu";
+import { useTitle } from "../hooks/useTitle";
 import MovieCard from "../components/MovieCard";
-import axios from "axios";
 import { Media, MediaResponse } from "../types";
-import "primeicons/primeicons.css";
-import { useParams, useNavigate } from "react-router-dom";
 import MovieSkeleton from "../components/MovieSkeleton";
+
+import "primeicons/primeicons.css";
+
+import "../styles/MainPage.css";
 
 const fetchAllCards = async (page: number): Promise<MediaResponse> => {
   const response = await axios.get(
@@ -18,6 +24,7 @@ const fetchAllCards = async (page: number): Promise<MediaResponse> => {
 };
 
 const MainPage = () => {
+  useTitle("Home");
   const { page: pageParam } = useParams();
   const navigate = useNavigate();
   const [mediaCards, setMediaCards] = useState<Media[]>([]);

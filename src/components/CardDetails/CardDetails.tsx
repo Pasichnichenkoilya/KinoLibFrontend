@@ -1,8 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import "./CardDetails.css";
+
+import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
+
 import { Details } from "../../types";
+import { useTitle } from "../../hooks/useTitle";
+
+import "./CardDetails.css";
 
 const fetchDetails = async (mediaId: string): Promise<Details> => {
   const response = await axios.get(
@@ -19,6 +23,7 @@ const fetchPlayer = async (mediaId: string): Promise<string> => {
 };
 
 const CardDetails = () => {
+  useTitle("Details");
   const [details, setDetails] = useState<Details>({
     filmPath: [],
     titleUa: "",

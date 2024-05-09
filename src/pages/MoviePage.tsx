@@ -1,9 +1,9 @@
-import React from 'react'
+import { useTitle } from "../hooks/useTitle";
 
 const MoviePage = () => {
-  return (
-    <div>MoviePage</div>
-  )
-}
+  useTitle("Movies");
 
-export default MoviePage
+  return <div>MoviePage</div>;
+};
+
+export default MoviePage;
