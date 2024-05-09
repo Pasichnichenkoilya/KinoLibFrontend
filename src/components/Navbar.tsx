@@ -1,11 +1,14 @@
 import { useState } from "react";
-import "../styles/Navbar.css";
+
+import { Link } from "react-router-dom";
+
+import { InputSwitch } from "primereact/inputswitch";
+
+import Search from "./Search";
+
 import "primeicons/primeicons.css";
 
-import { Button } from "primereact/button";
-import { Link } from "react-router-dom";
-import { InputSwitch } from "primereact/inputswitch";
-import Search from "./Search";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [checked, setChecked] = useState(false);

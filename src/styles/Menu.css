@@ -1,27 +1,26 @@
-@import 'primeflex/primeflex.css';
+@import "primeflex/primeflex.css";
 
-.genres{
-    background-color: #333333;
+.genres {
+  background-color: #333333;
 }
 
 .p-knob-text {
-    color:aqua /* белый цвет текста */
-  }
+  color: aqua; /* белый цвет текста */
+}
 
+.custom-handle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
 
-  .custom-handle {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-  }
-  
-  .handle-value {
-    background-color: #333; 
-    padding: 4px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .center_div{
-    width: 38%;
-  }
+.handle-value {
+  background-color: #333;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.center_div {
+  width: 38%;
+}

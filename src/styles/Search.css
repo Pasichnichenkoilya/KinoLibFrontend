@@ -3,7 +3,7 @@
 }
 
 .placeholder-color::placeholder {
-  color: #ffffff71; 
+  color: #ffffff71;
 }
 
 .suggestion-list {
@@ -38,12 +38,12 @@
 }
 
 .suggestion-list::-webkit-scrollbar-thumb {
-  background-color: #93ABFF;
+  background-color: #93abff;
   border-radius: 4px;
 }
 
 .suggestion-list::-webkit-scrollbar-thumb:hover {
-  background-color: #93ABFF;
+  background-color: #93abff;
 }
 
 .search-container {
@@ -98,4 +98,3 @@ body.no-scroll {
   color: #ffffff;
   font-size: 150%;
 }
-

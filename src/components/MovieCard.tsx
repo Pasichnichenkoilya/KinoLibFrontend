@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+
+import { Link } from "react-router-dom";
+
 import { Media } from "../types/index";
 
-import "../styles/Card.css";
 import "primeicons/primeicons.css";
-import { Link } from "react-router-dom";
+
+import "../styles/Card.css";
 
 const MovieCard: React.FC<{ entry: Media }> = ({ entry }) => {
   let ratingColorStyle = {};

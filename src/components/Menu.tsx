@@ -1,8 +1,9 @@
 import { useState } from "react";
-import DropdownChoices from "./DropdownChoices";
-import GenresSelect from "./GenresSelect";
+
 import KnobSlider from "./KnobSlider";
 import SliderRate from "./SliderRate";
+import GenresSelect from "./GenresSelect";
+import DropdownChoices from "./DropdownChoices";
 
 import "../styles/Menu.css";
 

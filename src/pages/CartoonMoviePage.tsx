@@ -1,9 +1,5 @@
-import React from 'react'
-
 const CartoonMoviePage = () => {
-  return (
-    <div>CartoonMoviePage</div>
-  )
-}
+  return <div>CartoonMoviePage</div>;
+};
 
-export default CartoonMoviePage
+export default CartoonMoviePage;

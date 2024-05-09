@@ -1,9 +1,5 @@
-import React from 'react'
-
 const AnimePage = () => {
-  return (
-    <div>AnimePage</div>
-  )
-}
+  return <div>AnimePage</div>;
+};
 
-export default AnimePage
+export default AnimePage;
