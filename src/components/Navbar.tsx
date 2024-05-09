@@ -17,6 +17,7 @@ const Navbar = () => {
     { label: "фільми", url: "/movies" },
     { label: "серіали", url: "/series" },
     { label: "мультфільми", url: "/cartoons" },
+    { label: "мультсеріали", url: "/cartoon-series" },
     { label: "аніме", url: "/anime" },
   ];
 

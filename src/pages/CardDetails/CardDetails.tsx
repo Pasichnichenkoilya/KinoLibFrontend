@@ -41,14 +41,16 @@ const CardDetails = () => {
   const [mainBreadcrumb, mediaBreadcrumb, idBreadcrumb] = details.filmPath;
 
   useEffect(() => {
-    fetchDetails(`${id}/${season || ""}`)
+    const seasonParam = season ? `/${season}` : "";
+    const episodeParam = episode ? `/${episode}` : "/episode-1";
+
+    fetchDetails(`${id}${seasonParam}`)
       .then((details) => setDetails(details))
       .catch((e) => console.log(e));
 
-    fetchPlayer(`${id}/${season || ""}/${episode || "episode-1"}`)
+    fetchPlayer(`${id}${seasonParam}${episodeParam}`)
       .then((playerUrl) => setPlayer(playerUrl))
       .catch((e) => console.log(e));
-
     window.scrollTo(0, 0);
   }, []);
 
@@ -56,8 +58,8 @@ const CardDetails = () => {
     if (breadcrumbName === "Фільми") return "/movies";
     if (breadcrumbName === "Аніме") return "/anime";
     if (breadcrumbName === "Серіали") return "/series";
-    if (breadcrumbName === "Мультфільми" || breadcrumbName === "Мультсеріали")
-      return "/cartoons";
+    if (breadcrumbName === "Мультфільми") return "/cartoons";
+    if (breadcrumbName === "Мультсеріали") return "/cartoon-series";
     return "/";
   }
 
