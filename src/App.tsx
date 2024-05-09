@@ -22,10 +22,11 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route index element={<MainPage />} />
-        <Route
-          path="/details/:id/:season?/:episode?"
-          element={<CardDetails />}
-        />
+        <Route path="/details/:id" element={<CardDetails />}>
+          <Route path=":season" element={<CardDetails />}>
+            <Route path=":episode" element={<CardDetails />} />
+          </Route>
+        </Route>
         <Route path="/:page?/:page?" element={<MainPage />} />
         <Route path="/movies/:page?" element={<MoviePage />} />
         <Route path="/series/:page?" element={<SerialPage />} />
