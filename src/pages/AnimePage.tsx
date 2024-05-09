@@ -25,14 +25,15 @@ const AnimePage = () => {
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [page]);
 
   return (
     <div className="pt-14rem">
       <CardsGrid
         cards={media}
         countOfPages={countOfPages}
-        currentPage={parseInt(page || "1")}></CardsGrid>
+        currentPage={parseInt(page || "1")}
+        navigateUrl="anime"></CardsGrid>
     </div>
   );
 };

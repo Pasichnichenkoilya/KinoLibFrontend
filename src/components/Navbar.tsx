@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import { Button } from "primereact/button";
 import { InputSwitch } from "primereact/inputswitch";
 
 import Search from "./Search";
@@ -64,20 +65,15 @@ const Navbar = () => {
                   </div>
                   <div className="flex flex-rom justify-content-between">
                     {menuItems.map((item: MenuItem) => (
-                      <Link
-                        key={item.url}
-                        to={item.url}
-                        >
-                          <Button className={`text-500 uppercase border-noround hover:text-white ${
-                          activeButton === item.label
-                            ? "text-white"
-                            : ""
-                        }`}
-                            label={item.label}
+                      <Link key={item.url} to={item.url}>
+                        <Button
+                          className={`text-500 uppercase border-noround hover:text-white ${
+                            activeButton === item.label ? "text-white" : ""
+                          }`}
+                          label={item.label}
                           text
-                          onClick={() => handleButtonClick(item.label)}/>
-                          
-                        
+                          onClick={() => handleButtonClick(item.label)}
+                        />
                       </Link>
                     ))}
                   </div>

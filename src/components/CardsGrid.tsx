@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { DataView } from "primereact/dataview";
-import { Paginator } from "primereact/paginator";
+import { Paginator, PaginatorPageChangeEvent } from "primereact/paginator";
 
 import { Media } from "../types";
 import MovieCard from "./MovieCard";
@@ -12,9 +12,15 @@ type CardGridProps = {
   cards: Media[];
   currentPage: number;
   countOfPages: number;
+  navigateUrl: string;
 };
 
-const CardsGrid = ({ cards, currentPage, countOfPages }: CardGridProps) => {
+const CardsGrid = ({
+  cards,
+  currentPage,
+  countOfPages,
+  navigateUrl,
+}: CardGridProps) => {
   const navigate = useNavigate();
 
   const listTemplate = (items: Media[]): ReactNode[] => {
@@ -31,6 +37,12 @@ const CardsGrid = ({ cards, currentPage, countOfPages }: CardGridProps) => {
     ];
   };
 
+  const onPageChange = (event: PaginatorPageChangeEvent) => {
+    const url = `/${navigateUrl}/${event.page + 1}`;
+    console.log("url:", url);
+    navigate(url);
+  };
+
   return (
     <div className="bg-gray-900 w-full h-full flex flex-column">
       <div className="flex flex-column">
@@ -39,9 +51,7 @@ const CardsGrid = ({ cards, currentPage, countOfPages }: CardGridProps) => {
           first={(currentPage - 1) * 20}
           rows={20}
           totalRecords={countOfPages * 20}
-          onPageChange={(e) => {
-            navigate(`/${e.page + 1}`);
-          }}
+          onPageChange={onPageChange}
           pageLinkSize={6}
           className="bg-gray-900 p-paginator-page:flex flex-row"
         />
