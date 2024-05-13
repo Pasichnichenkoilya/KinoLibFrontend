@@ -10,6 +10,7 @@ import { useCardsContext } from "../hooks/useCards";
 
 import "../styles/Menu.css";
 import "../styles/Paginator.css";
+import { useTitle } from "../hooks/useTitle";
 
 const fetchCards = async (
   mediaType: string,
@@ -29,9 +30,14 @@ type CardsGridPageProps = {
     | "cartoons"
     | "cartoon-series"
     | "anime";
+  title: string;
 };
 
-export default function CardsGridPage({ mediaType }: CardsGridPageProps) {
+export default function CardsGridPage({
+  mediaType,
+  title,
+}: CardsGridPageProps) {
+  useTitle(title);
   const { cards, setCards, countOfPages, setCountOfPages } = useCardsContext();
   const { page: page } = useParams();
 

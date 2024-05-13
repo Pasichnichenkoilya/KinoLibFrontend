@@ -7,6 +7,7 @@ import { Details } from "../../types";
 import Player from "../../components/Player";
 
 import "./CardDetails.css";
+import { useTitle } from "../../hooks/useTitle";
 
 const fetchDetails = async (mediaId: string): Promise<Details> => {
   const response = await axios.get(
@@ -16,6 +17,7 @@ const fetchDetails = async (mediaId: string): Promise<Details> => {
 };
 
 const CardDetails = () => {
+  useTitle("Details");
   const [details, setDetails] = useState<Details>({
     filmPath: [],
     titleUa: "",
@@ -36,7 +38,9 @@ const CardDetails = () => {
     const seasonParam = season ? `/${season}` : "";
 
     fetchDetails(`${id}${seasonParam}`)
-      .then((details) => setDetails(details))
+      .then((details) => {
+        setDetails(details);
+      })
       .catch((e) => console.log(e));
   }, [id, season, episode]);
 

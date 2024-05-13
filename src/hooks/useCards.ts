@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, createContext, useContext } from "react";
+import { createContext, Dispatch, SetStateAction, useContext } from "react";
+
 import { Media } from "../types";
 
 export type CardsState = {
