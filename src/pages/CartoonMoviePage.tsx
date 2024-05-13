@@ -25,6 +25,7 @@ const CartoonMoviePage = () => {
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
+    window.scrollTo(0, 0);
   }, [page]);
 
   return (

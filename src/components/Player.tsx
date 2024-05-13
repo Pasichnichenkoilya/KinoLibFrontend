@@ -17,7 +17,10 @@ const fetchPlayer = async (
   episode: string
 ): Promise<string> => {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/player-url/${id}/${season}/${episode}`
+    `https://kinolib-backend-homer.fly.dev/parse/player-url/${id}/${season}/${episode}`.replaceAll(
+      "//",
+      "/"
+    )
   );
   return response.data.playerUrl;
 };
@@ -35,9 +38,11 @@ const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
       />
     );
   });
+
   const currentSeason = seasonsInfo.find(
     (info) => `/${id}/${season || ""}` === info.seasonId
   );
+
   const episodes = currentSeason
     ? currentSeason.episodes.map((ep) => {
         return (
@@ -58,14 +63,13 @@ const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
   }, []);
 
   return (
-    <div className="w-full details-wrapper border-round-3xl p-5">
+    <div className="w-full details-wrapper border-round-3xl p-5 flex flex-column align-items-center">
       {seasons.length > 0 ? (
         <div className="w-full max-w-48rem pb-4">
           <HorizontalCarousel items={seasons} />
         </div>
       ) : null}
       <iframe
-        id="player"
         src={playerUrl}
         className="w-full aspect-video max-w-48rem"></iframe>
       {episodes.length > 0 ? (

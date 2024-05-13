@@ -38,8 +38,6 @@ const CardDetails = () => {
     fetchDetails(`${id}${seasonParam}`)
       .then((details) => setDetails(details))
       .catch((e) => console.log(e));
-
-    window.scrollTo(0, 0);
   }, [id, season, episode]);
 
   function getBreadcrumbUrl(breadcrumbName: string) {

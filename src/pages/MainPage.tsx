@@ -49,6 +49,7 @@ const MainPage = () => {
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
+    window.scrollTo(0, 0);
   }, [currentPage]);
 
   const listTemplate = (items: Media[]): ReactNode[] => {
