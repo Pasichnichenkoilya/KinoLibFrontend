@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
+
+import axios from "axios";
+
+import { SeasonInfo } from "../types";
 import CarouselPill from "./CarouselPill";
 import HorizontalCarousel from "./HorizontalCarousel";
-import { SeasonInfo } from "../types";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 type PlayerProps = {
   id: string;

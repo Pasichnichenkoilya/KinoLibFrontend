@@ -10,11 +10,11 @@ import Menu from "../components/Menu";
 import MovieCard from "../components/MovieCard";
 import { Media, MediaResponse } from "../types";
 import MovieSkeleton from "../components/MovieSkeleton";
-import "../styles/Paginator.css";
 
 import "primeicons/primeicons.css";
 
 import "../styles/MainPage.css";
+import "../styles/Paginator.css";
 
 const fetchAllCards = async (page: number): Promise<MediaResponse> => {
   const response = await axios.get(

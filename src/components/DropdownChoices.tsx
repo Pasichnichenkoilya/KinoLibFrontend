@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Dropdown } from "primereact/dropdown";
+
 import "../styles/Dropdown.css";
 
 const DropdownChoices = () => {
