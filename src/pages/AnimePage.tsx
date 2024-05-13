@@ -1,9 +1,9 @@
-import React from 'react'
+import { useTitle } from "../hooks/useTitle";
 
 const AnimePage = () => {
-  return (
-    <div>AnimePage</div>
-  )
-}
+  useTitle("Anime");
 
-export default AnimePage
+  return <div>AnimePage</div>;
+};
+
+export default AnimePage;

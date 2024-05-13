@@ -1,9 +1,9 @@
-import React from 'react'
+import { useTitle } from "../hooks/useTitle";
 
 const SerialPage = () => {
-  return (
-    <div>SerialPage</div>
-  )
-}
+  useTitle("Series");
 
-export default SerialPage
+  return <div>SerialPage</div>;
+};
+
+export default SerialPage;
