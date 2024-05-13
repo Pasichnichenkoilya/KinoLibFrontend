@@ -38,23 +38,23 @@ const CardsGrid = ({
   };
 
   const onPageChange = (event: PaginatorPageChangeEvent) => {
-    const url = `/${navigateUrl}/${event.page + 1}`;
-    console.log("url:", url);
-    navigate(url);
+    navigate(`/${navigateUrl}/${event.page + 1}`);
   };
 
   return (
     <div className="bg-gray-900 w-full h-full flex flex-column">
       <div className="flex flex-column">
         <DataView value={cards} listTemplate={listTemplate} layout={"grid"} />
-        <Paginator
-          first={(currentPage - 1) * 20}
-          rows={20}
-          totalRecords={countOfPages * 20}
-          onPageChange={onPageChange}
-          pageLinkSize={6}
-          className="bg-gray-900 p-paginator-page:flex flex-row"
-        />
+        {countOfPages ? (
+          <Paginator
+            first={(currentPage - 1) * 20}
+            rows={20}
+            totalRecords={countOfPages * 20}
+            onPageChange={onPageChange}
+            pageLinkSize={6}
+            className="bg-gray-900 p-paginator-page:flex flex-row"
+          />
+        ) : null}
       </div>
     </div>
   );

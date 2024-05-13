@@ -62,7 +62,7 @@ const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
     fetchPlayer(id, season, episode)
       .then((playerUrl) => setPlayerUrl(playerUrl))
       .catch((e) => console.log(e));
-  }, []);
+  }, [id, season, episode]);
 
   return (
     <div className="w-full details-wrapper border-round-3xl p-5 flex flex-column align-items-center">

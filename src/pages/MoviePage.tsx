@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import { Media, MediaResponse } from "../types";
+import { MediaResponse } from "../types";
 import CardsGrid from "../components/CardsGrid";
+import { useCardsContext } from "../hooks/useCards";
 
 const fetchMovies = async (page: number): Promise<MediaResponse> => {
   const response = await axios.get(
@@ -14,14 +15,13 @@ const fetchMovies = async (page: number): Promise<MediaResponse> => {
 };
 
 const MoviePage = () => {
-  const [media, setMedia] = useState<Media[]>([]);
-  const [countOfPages, setCountOfPages] = useState(0);
+  const { cards, setCards, countOfPages, setCountOfPages } = useCardsContext();
   const { page: page } = useParams();
 
   useEffect(() => {
     fetchMovies(parseInt(page || "1"))
       .then(({ media, countOfPages }) => {
-        setMedia(media);
+        setCards(media);
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
@@ -29,13 +29,11 @@ const MoviePage = () => {
   }, [page]);
 
   return (
-    <div className="pt-14rem">
-      <CardsGrid
-        cards={media}
-        countOfPages={countOfPages}
-        currentPage={parseInt(page || "1")}
-        navigateUrl="movies"></CardsGrid>
-    </div>
+    <CardsGrid
+      cards={cards}
+      countOfPages={countOfPages}
+      currentPage={parseInt(page || "1")}
+      navigateUrl="/movies"></CardsGrid>
   );
 };
 

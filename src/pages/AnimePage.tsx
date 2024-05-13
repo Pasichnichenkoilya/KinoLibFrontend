@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import { Media, MediaResponse } from "../types";
+import { MediaResponse } from "../types";
 import CardsGrid from "../components/CardsGrid";
+import { useCardsContext } from "../hooks/useCards";
 
 const fetchAnime = async (page: number): Promise<MediaResponse> => {
   const response = await axios.get(
@@ -14,14 +15,13 @@ const fetchAnime = async (page: number): Promise<MediaResponse> => {
 };
 
 const AnimePage = () => {
-  const [media, setMedia] = useState<Media[]>([]);
-  const [countOfPages, setCountOfPages] = useState(0);
+  const { cards, setCards, countOfPages, setCountOfPages } = useCardsContext();
   const { page: page } = useParams();
 
   useEffect(() => {
     fetchAnime(parseInt(page || "1"))
       .then(({ media, countOfPages }) => {
-        setMedia(media);
+        setCards(media);
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
@@ -29,12 +29,12 @@ const AnimePage = () => {
   }, [page]);
 
   return (
-    <div className="pt-14rem">
+    <div className="">
       <CardsGrid
-        cards={media}
+        cards={cards}
         countOfPages={countOfPages}
         currentPage={parseInt(page || "1")}
-        navigateUrl="anime"></CardsGrid>
+        navigateUrl="/anime"></CardsGrid>
     </div>
   );
 };
