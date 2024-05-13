@@ -1,7 +1,14 @@
 .details-container {
   max-width: 80rem;
-  padding-top: 14rem;
   color: white;
+}
+
+.pt-14rem {
+  padding-top: 14rem;
+}
+
+.max-w-80rem {
+  max-width: 80rem;
 }
 
 .breadcrumb-previous {
@@ -26,7 +33,7 @@
   border-color: #2b2b2b;
 }
 
-.player-container {
+.aspect-video {
   aspect-ratio: 16 / 9;
 }
 
@@ -38,4 +45,8 @@
   .min-h-26rem {
     min-height: 26rem;
   }
+}
+
+.max-w-48rem {
+  max-width: 48rem;
 }

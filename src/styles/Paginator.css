@@ -1,0 +1,36 @@
+.p-paginator-last {
+  border-color: transparent;
+  color: white;
+  background-color: transparent;
+}
+
+.p-paginator-first {
+  border-color: transparent;
+  color: white;
+  background-color: transparent;
+}
+
+.p-paginator-prev {
+  border-color: transparent;
+  color: white;
+  background-color: transparent;
+}
+
+.p-paginator-next {
+  border-color: transparent;
+  color: white;
+  background-color: transparent;
+}
+
+.p-paginator-page {
+  border-color: transparent;
+  color: white;
+  background-color: rgba(67, 68, 68, 0.103);
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+.p-paginator-page:hover {
+  background-color: #93aaff50;
+  border-color: #93abff;
+}

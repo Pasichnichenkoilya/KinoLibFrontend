@@ -1,0 +1,27 @@
+.base_color {
+  background-color: #444444;
+}
+
+.p-dropdown-panel {
+  background-color: #444444;
+}
+.p-dropdown-item {
+  color: white;
+}
+.p-dropdown-trigger {
+  color: white;
+}
+.p-dropdown-label {
+  color: white;
+}
+.p-dropdown-items-wrapper {
+  background-color: #444444;
+}
+
+.p-highlight {
+  background: transparent;
+}
+
+.p-focus {
+  background: rgb(104, 100, 100);
+}

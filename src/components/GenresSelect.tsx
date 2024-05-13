@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import { MultiSelect } from "primereact/multiselect";
 
 const GenresSelect = () => {

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import ReactGA from "react-ga4";
 
 export function useTitle(title: string) {
@@ -8,5 +9,5 @@ export function useTitle(title: string) {
       hintType: "pageview",
       page: window.location.pathname,
     });
-  }, []);
+  }, [title]);
 }

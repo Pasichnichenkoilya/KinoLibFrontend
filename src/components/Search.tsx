@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import axios from "axios";
+
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
-import axios from "axios";
-import "../styles/Search.css";
+
 import { Media } from "../types";
+
+import "../styles/Search.css";
 
 const fetchSearch = async (search: string) => {
   const response = await axios.get(
@@ -44,7 +48,7 @@ const Search = () => {
           setSuggestions(data.media);
           setIsListVisible(true);
         } else {
-          console.error('Unexpected data format:', data);
+          console.error("Unexpected data format:", data);
           setSuggestions([]);
           setIsListVisible(false);
         }
@@ -76,7 +80,7 @@ const Search = () => {
   };
 
   return (
-    <div className={`search-container ${isFocused ? 'focused' : ''}`}>
+    <div className={`search-container ${isFocused ? "focused" : ""}`}>
       <IconField iconPosition="left" className="input-container">
         <InputIcon className="pi pi-search text-white" />
         <InputText
@@ -89,7 +93,9 @@ const Search = () => {
           onBlur={handleInputBlur}
         />
         {value && (
-          <span className="pi pi-times-circle clear-icon" onClick={clearInput}></span>
+          <span
+            className="pi pi-times-circle clear-icon"
+            onClick={clearInput}></span>
         )}
       </IconField>
       {isListVisible && (
