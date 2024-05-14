@@ -23,7 +23,7 @@ const Menu = ({ mediaType }: MenuProps) => {
   return (
     <div className="w-full h-10rem flex justify-content-between relative">
       <div className="w-4 h-full flex flex-column relative overflow-hidden align-items-center gap-3 pl-8">
-        <DropdownChoices />
+        <DropdownChoices mediaType={mediaType}/>
         <GenresSelect />
       </div>
       <div className="w-4 h-full flex flex-row relative pl-8 gap-5 pr-4">
