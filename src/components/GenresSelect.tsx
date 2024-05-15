@@ -1,30 +1,75 @@
 import { useState } from "react";
 
-import { MultiSelect } from "primereact/multiselect";
+import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
+import "../styles/MultiSelect.css"
+import axios from "axios";
+import { MediaResponse } from "../types";
+import { useCardsContext } from "../hooks/useCards";
+import { error } from "console";
 
-const GenresSelect = () => {
+async function fetchGenre(
+  genre: string,
+  mediaType: string
+):Promise<MediaResponse>{
+  const response = await axios.get(`https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`);
+  return response.data;
+}
+
+type GenresSelectProps = {
+  mediaType: string
+}
+
+const GenresSelect = ({mediaType}:GenresSelectProps) => {
   const [selectedGenres, setSelectedGenres] = useState(null);
+  const { setCards, setCountOfPages } = useCardsContext();
+ 
 
-  interface Genre {
-    name: string;
-  }
-
-  const genres: Genre[] = [
-    { name: "First" },
-    { name: "Second" },
-    { name: "Third" },
+  const genres = [
+    { name: "біографія" , value: "biography" },
+    { name: "бойовик", value: "action" },
+    { name: "вестерн", value: "western" },
+    { name: "воєний", value: "military" },
+    { name: "детектив", value: "detective" },
+    { name: "документальний", value: "documentary" },
+    { name: "дорами", value: "dorams" },
+    { name: "драма", value: "drama" },
+    { name: "екшн", value: "action-1" },
+    { name: "історичний", value: "historical" },
+    { name: "жахи", value: "horrors" },
+    { name: "комедія", value: "comedy" },
+    { name: "короткометражні", value: "short-movies" },
+    { name: "крімінальний", value: "kriminalnij" },
+    { name: "мелодрами", value: "melodramy" },
+    { name: "пригоди", value: "adventure" },
+    { name: "романтичний", value: "romantychnyi" },
+    { name: "сімейний", value: "family" },
+    { name: "спорт", value: "sport" },
+    { name: "трилер", value: "thriller" },
+    { name: "фантастика", value: "fantasy" },
+    { name: "фентезі", value: "fantasy-1" },
+    
   ];
+  function onChangeGenre(e: MultiSelectChangeEvent){
+    const genre = e.value;
+    fetchGenre(genre,mediaType)
+      .then(({media, countOfPages}) => {
+        setCards(media);
+        setCountOfPages(countOfPages);
+      })
+      .catch((error) => console.log(error));
+    setSelectedGenres(e.value)
+  }
 
   return (
     <MultiSelect
       value={selectedGenres}
-      onChange={(e) => setSelectedGenres(e.value)}
+      onChange={onChangeGenre}
       options={genres}
       optionLabel="name"
       display="chip"
-      placeholder="Select Cities"
+      placeholder="🎭 Обери жанр"
       maxSelectedLabels={3}
-      className="w-full md:w-20rem border-round-3xl"
+      className="w-full md:w-20rem border-round-3xl border-none"
     />
   );
 };

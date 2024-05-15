@@ -21,12 +21,12 @@ const Menu = ({ mediaType }: MenuProps) => {
   const [value1, setValue1] = useState(1990);
 
   return (
-    <div className="w-full h-10rem flex justify-content-between relative">
-      <div className="w-4 h-full flex flex-column relative overflow-hidden align-items-center gap-3 pl-8">
+    <div className="w-full h-10rem flex justify-content-around relative">
+      <div className="w-3 h-full flex flex-column relative overflow-hidden align-items-start gap-3  mr-8">
         <DropdownChoices mediaType={mediaType}/>
-        <GenresSelect />
+        <GenresSelect mediaType={mediaType}/>
       </div>
-      <div className="w-4 h-full flex flex-row relative pl-8 gap-5 pr-4">
+      <div className="w-3 h-full flex flex-row relative gap-5 justify-content-end ml-8 overflow-hidden">
         <KnobSlider value={value1} onChange={(e) => setValue1(e.value)} />
         <SliderRate mediaType={mediaType} />
       </div>

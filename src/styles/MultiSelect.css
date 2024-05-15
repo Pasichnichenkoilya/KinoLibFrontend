@@ -1,0 +1,31 @@
+.p-multiselect{
+    background-color: #444444;
+}
+.p-multiselect .p-multiselect-label.p-placeholder{
+    color: white 
+}
+
+.p-multiselect-panel{
+    background-color: #444444;
+}
+
+.p-multiselect-panel .p-multiselect-header{
+    background-color: #444444;
+}
+
+.p-multiselect-item{
+    color: white
+}
+
+.p-multiselect.p-multiselect-chip .p-multiselect-token{
+    background-color: #646F96;
+    color: white
+}
+
+.p-multiselect .p-multiselect-trigger{
+    color: white;
+}
+
+.p-multiselect-panel .p-multiselect-header .p-multiselect-close{
+    color: white;
+}
