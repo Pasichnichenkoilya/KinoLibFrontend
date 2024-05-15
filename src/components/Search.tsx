@@ -9,28 +9,13 @@ import { InputText } from "primereact/inputtext";
 import { Media } from "../types";
 
 import "../styles/Search.css";
+import useDebounce from "../hooks/useDebounce";
 
 const fetchSearch = async (search: string) => {
   const response = await axios.get(
     `https://kinolib-backend-homer.fly.dev/parse/search/${search}`
   );
   return response.data;
-};
-
-const useDebounce = (value: string, delay: number) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
 };
 
 const Search = () => {
