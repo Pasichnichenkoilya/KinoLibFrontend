@@ -6,7 +6,7 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App";
 
-ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_KEY || "");
+ReactGA.initialize("G-RRSXTMY8C9");
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
