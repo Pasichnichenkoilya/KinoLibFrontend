@@ -23,7 +23,7 @@ const MovieCard: React.FC<{ entry: Media }> = ({ entry }) => {
 
   return (
     <Link to={`/details${entry.id}`}>
-      <div className="card_size relative cursor-pointer">
+      <div className="card_size relative cursor-pointer ">
         <img
           src={entry.image}
           alt={entry.title}

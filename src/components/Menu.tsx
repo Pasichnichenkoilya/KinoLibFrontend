@@ -21,7 +21,7 @@ const Menu = ({ mediaType }: MenuProps) => {
   const [value1, setValue1] = useState(1990);
 
   return (
-    <div className="w-full h-10rem flex justify-content-around relative">
+    <div className="w-full h-10rem justify-content-around relative hidden md:flex">
       <div className="w-3 h-full flex flex-column relative overflow-hidden align-items-start gap-3  mr-8">
         <DropdownChoices mediaType={mediaType}/>
         <GenresSelect mediaType={mediaType}/>

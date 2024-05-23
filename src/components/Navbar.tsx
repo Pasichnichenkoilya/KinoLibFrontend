@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex flex-row justify-content-center w-full fixed nav_index">
+    <div className=" flex-row justify-content-center w-full fixed nav_index hidden md:flex">
       <div className="h-6rem width_nav nav_bg  borders flex flex-row align-items-center justify-content-between fixed">
         <div className="w-2 h-2rem flex flex-row align-items-center ml-6">
           <img
@@ -59,15 +59,15 @@ const Navbar = () => {
           <div className="w-full mt-1">
             <div className="">
               <div className="test_under_2 ml-auto mr-auto">
-                <div className="h-8rem  ml-5 mr-5  flex flex-column justify-content-center gap-3">
+                <div className="h-8rem ml-5 mr-5 flex flex-column justify-content-center gap-3" style={{minHeight: '8rem'}}>
                   <div>
                     <Search />
                   </div>
-                  <div className="flex flex-rom justify-content-between">
+                  <div className="flex flex-wrap justify-content-center align-items-center column-gap-3 row-gap-1">
                     {menuItems.map((item: MenuItem) => (
                       <Link key={item.url} to={item.url}>
                         <Button
-                          className={`text-500 uppercase border-noround hover:text-white ${
+                          className={`text-500 uppercase border-noround hover:text-white h-1rem p-0 ${
                             activeButton === item.label ? "text-white" : ""
                           }`}
                           label={item.label}

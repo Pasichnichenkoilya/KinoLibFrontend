@@ -9,6 +9,18 @@
   width: 86%;
 }
 
+@media screen and (max-width: 600px) {
+  .width_nav {
+    width: 100%;
+  }
+
+  .borders {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+}
+
 .inst_img {
   width: 41px;
   height: 41px;
@@ -26,25 +38,7 @@
   margin-top: 60px;
 }
 
-.checks {
-  width: 20px;
-  height: 20px;
-  background-color: rgb(255, 255, 255);
-  border-top-right-radius: 50px;
-  border-right: 3px solid #000;
-  border-top: 2px solid #000;
-  margin-top: 55px;
-}
-.checks2 {
-  width: 20px;
-  height: 20px;
-  background-color: rgb(255, 255, 255);
-  border-top-left-radius: 50px;
-  border-left: 3px solid #000;
-  border-top: 2px solid #000;
-  margin-top: 55px;
-  margin-left: 721px;
-}
+
 
 .test_under_2 {
   background: rgb(68, 68, 68);
