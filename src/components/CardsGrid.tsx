@@ -29,7 +29,7 @@ const CardsGrid = ({
     return [
       <div
         key={"cards-container"}
-        className="grid grid-nogutter justify-content-center p-5 gap-3 bg-gray-900 cards-grid mx-auto">
+        className="grid justify-content-center p-5 gap-3 bg-gray-900 cards-grid mx-auto">
         {items.map((media) => (
           <MovieCard entry={media} key={media.id} />
         ))}

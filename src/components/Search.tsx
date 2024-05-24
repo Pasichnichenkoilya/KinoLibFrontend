@@ -7,9 +7,9 @@ import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 
+import { useCards } from "../hooks/useCards";
 import useDebounce from "../hooks/useDebounce";
 import { Media, MediaResponse } from "../types";
-import { useCardsContext } from "../hooks/useCards";
 
 import "../styles/Search.css";
 
@@ -21,7 +21,7 @@ async function fetchSearch(search: string): Promise<MediaResponse> {
 }
 
 const Search = () => {
-  const { cards, setCards, setCountOfPages } = useCardsContext();
+  const { cards, setCards, setCountOfPages } = useCards();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);

@@ -5,12 +5,13 @@ import { useParams } from "react-router-dom";
 
 import Menu from "../components/Menu";
 import { MediaResponse } from "../types";
+import { useCards } from "../hooks/useCards";
+import { useTitle } from "../hooks/useTitle";
 import CardsGrid from "../components/CardsGrid";
-import { useCardsContext } from "../hooks/useCards";
+import { MediaType, useMediaType } from "../hooks/useMediaType";
 
 import "../styles/Menu.css";
 import "../styles/Paginator.css";
-import { useTitle } from "../hooks/useTitle";
 
 const fetchCards = async (
   mediaType: string,
@@ -23,23 +24,18 @@ const fetchCards = async (
 };
 
 type CardsGridPageProps = {
-  mediaType:
-    | "all"
-    | "movies"
-    | "series"
-    | "cartoons"
-    | "cartoon-series"
-    | "anime";
   title: string;
+  mediaType: MediaType;
 };
 
 export default function CardsGridPage({
-  mediaType,
   title,
+  mediaType,
 }: CardsGridPageProps) {
   useTitle(title);
-  const { cards, setCards, countOfPages, setCountOfPages } = useCardsContext();
+  const { cards, setCards, countOfPages, setCountOfPages } = useCards();
   const { page: page } = useParams();
+  const { setMediaType } = useMediaType();
 
   useEffect(() => {
     fetchCards(mediaType, parseInt(page || "1"))
@@ -49,10 +45,11 @@ export default function CardsGridPage({
       })
       .catch((error) => console.log(error));
     window.scrollTo(0, 0);
+    setMediaType(mediaType);
   }, [page, mediaType]);
 
   return (
-    <>
+    <div className="h-full overflow-y-auto flex-1">
       <Menu mediaType={mediaType} />
       <CardsGrid
         cards={cards}
@@ -60,6 +57,6 @@ export default function CardsGridPage({
         currentPage={parseInt(page || "1")}
         navigateUrl={mediaType}
       />
-    </>
+    </div>
   );
 }

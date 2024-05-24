@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
+import axios from "axios";
+
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 
-import "../styles/Dropdown.css";
-import { SliderChangeEvent } from "primereact/slider";
 import { MediaResponse } from "../types";
-import axios from "axios";
-import { useCardsContext } from "../hooks/useCards";
+import { useCards } from "../hooks/useCards";
+
+import "../styles/Dropdown.css";
 
 async function fetchPriority(
   priority: string,
@@ -20,12 +21,12 @@ async function fetchPriority(
 }
 
 type DropdownChoicesProps = {
-  mediaType: string
-}
+  mediaType: string;
+};
 
-const DropdownChoices = ({mediaType}:DropdownChoicesProps) => {
+const DropdownChoices = ({ mediaType }: DropdownChoicesProps) => {
   const [selectChoises, setSelectChoises] = useState("popular");
-  const { setCards, setCountOfPages } = useCardsContext();
+  const { setCards, setCountOfPages } = useCards();
   const choises = [
     { name: "⭐ За популярністю", value: "popular" },
     { name: "👀 За переглядами", value: "views" },
@@ -42,8 +43,7 @@ const DropdownChoices = ({mediaType}:DropdownChoicesProps) => {
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
-     setSelectChoises(e.value)
-     
+    setSelectChoises(e.value);
   }
   useEffect(() => {
     setSelectChoises("popular");
@@ -56,7 +56,7 @@ const DropdownChoices = ({mediaType}:DropdownChoicesProps) => {
       options={choises}
       optionLabel="name"
       placeholder="🔎 Select a choise"
-      className="w-full md:w-20rem border-round-3xl base_color border-transparent mt-1 "
+      className="w-full md:w-20rem border-round-3xl base_color border-transparent mt-1"
     />
   );
 };

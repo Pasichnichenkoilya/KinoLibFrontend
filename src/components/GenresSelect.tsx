@@ -1,31 +1,34 @@
 import { useState } from "react";
 
-import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
-import "../styles/MultiSelect.css"
 import axios from "axios";
+
+import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
+
 import { MediaResponse } from "../types";
-import { useCardsContext } from "../hooks/useCards";
-import { error } from "console";
+import { useCards } from "../hooks/useCards";
+
+import "../styles/MultiSelect.css";
 
 async function fetchGenre(
   genre: string,
   mediaType: string
-):Promise<MediaResponse>{
-  const response = await axios.get(`https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`);
+): Promise<MediaResponse> {
+  const response = await axios.get(
+    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`
+  );
   return response.data;
 }
 
 type GenresSelectProps = {
-  mediaType: string
-}
+  mediaType: string;
+};
 
-const GenresSelect = ({mediaType}:GenresSelectProps) => {
+const GenresSelect = ({ mediaType }: GenresSelectProps) => {
   const [selectedGenres, setSelectedGenres] = useState(null);
-  const { setCards, setCountOfPages } = useCardsContext();
- 
+  const { setCards, setCountOfPages } = useCards();
 
   const genres = [
-    { name: "біографія" , value: "biography" },
+    { name: "біографія", value: "biography" },
     { name: "бойовик", value: "action" },
     { name: "вестерн", value: "western" },
     { name: "воєний", value: "military" },
@@ -47,17 +50,16 @@ const GenresSelect = ({mediaType}:GenresSelectProps) => {
     { name: "трилер", value: "thriller" },
     { name: "фантастика", value: "fantasy" },
     { name: "фентезі", value: "fantasy-1" },
-    
   ];
-  function onChangeGenre(e: MultiSelectChangeEvent){
+  function onChangeGenre(e: MultiSelectChangeEvent) {
     const genre = e.value;
-    fetchGenre(genre,mediaType)
-      .then(({media, countOfPages}) => {
+    fetchGenre(genre, mediaType)
+      .then(({ media, countOfPages }) => {
         setCards(media);
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
-    setSelectedGenres(e.value)
+    setSelectedGenres(e.value);
   }
 
   return (

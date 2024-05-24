@@ -5,7 +5,7 @@ import axios from "axios";
 import { Slider, SliderChangeEvent } from "primereact/slider";
 
 import { MediaResponse } from "../types";
-import { useCardsContext } from "../hooks/useCards";
+import { useCards } from "../hooks/useCards";
 
 import "../styles/Menu.css";
 
@@ -22,7 +22,7 @@ async function fetchRating(
 
 const SliderRate = ({ mediaType }: { mediaType: string }) => {
   const [value, setValue] = useState<[number, number]>([0, 10]);
-  const { setCards, setCountOfPages } = useCardsContext();
+  const { setCards, setCountOfPages } = useCards();
 
   function onSlideEnd(e: SliderChangeEvent) {
     const [from, to] = e.value as [number, number];

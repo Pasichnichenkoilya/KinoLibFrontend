@@ -36,7 +36,7 @@ const HorizontalCarousel = ({ items }: HorizontalCarouselProps) => {
     });
   }
   return (
-    <div className="flex gap-1 align-items-center">
+    <div className="flex gap-1 align-items-center w-full">
       {isLeftVisible ? (
         <button
           onClick={leftButtonClick}
@@ -51,7 +51,7 @@ const HorizontalCarousel = ({ items }: HorizontalCarouselProps) => {
       ) : null}
       <div
         ref={containerRef}
-        className="w-full h-full border-round-xl p-2 lg:overflow-hidden overflow-auto"
+        className="w-full h-full border-round-xl p-2 lg:overflow-hidden overflow-y-auto"
         style={{
           background: "#292929",
         }}>

@@ -20,10 +20,19 @@ export default function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
         <>
           <Link
             to={getBreadcrumbUrl(item)}
-            className="breadcrumb-previous hover:text-white">
+            style={{
+              color: "#6a6a6a",
+            }}
+            className="hover:text-white">
             {item}
           </Link>
-          <span className="breadcrumb-previous select-none">{" > "}</span>
+          <span
+            style={{
+              color: "#6a6a6a",
+            }}
+            className="select-none">
+            {" > "}
+          </span>
         </>
       ))}
       <span>{breadcrumbs[breadcrumbs.length - 1]}</span>
