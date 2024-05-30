@@ -1,24 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 
+import { Media } from "../types";
 import { useCards } from "../hooks/useCards";
 import useDebounce from "../hooks/useDebounce";
-import { Media, MediaResponse } from "../types";
+import { fetchSearch } from "../api/parseService";
 
 import "../styles/Search.css";
-
-async function fetchSearch(search: string): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/search/${search}`
-  );
-  return response.data;
-}
 
 const Search = () => {
   const { cards, setCards, setCountOfPages } = useCards();

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import { SeasonInfo } from "../types";
 import CarouselPill from "./CarouselPill";
+import { fetchPlayer } from "../api/parseService";
 import HorizontalCarousel from "./HorizontalCarousel";
 
 type PlayerProps = {
@@ -11,19 +10,6 @@ type PlayerProps = {
   season: string;
   episode: string;
   seasonsInfo: SeasonInfo[];
-};
-
-const fetchPlayer = async (
-  id: string,
-  season: string,
-  episode: string
-): Promise<string> => {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/player-url/${id}/${season}/${episode}`
-      .replaceAll("//", "/")
-      .replaceAll(":/", "://")
-  );
-  return response.data.playerUrl;
 };
 
 const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
@@ -79,6 +65,7 @@ const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
         </div>
       ) : null}
       <iframe
+        title={id + season}
         style={{
           aspectRatio: "16 / 9",
           maxWidth: "48rem",

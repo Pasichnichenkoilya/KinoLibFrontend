@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import { Knob } from "primereact/knob";
 
-import { MediaResponse } from "../types";
 import { useCards } from "../hooks/useCards";
 import useDebounce from "../hooks/useDebounce";
+import { fetchYears } from "../api/parseService";
 
 import "../styles/KnobSlider.css";
 
@@ -20,16 +18,6 @@ const YEARS = [
   "2023",
   "2024",
 ];
-
-async function fetchYears(
-  year: string,
-  mediaType: string
-): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&date=${year}`
-  );
-  return response.data;
-}
 
 export default function KnobSlider({ mediaType }: { mediaType: string }) {
   const [value, setValue] = useState<number | undefined>(undefined);

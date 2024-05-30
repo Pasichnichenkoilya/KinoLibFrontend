@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 import { Link } from "react-router-dom";
-
-import { InputSwitch } from "primereact/inputswitch";
 
 import Search from "./Search";
 import MenuItems from "./MenuItems";

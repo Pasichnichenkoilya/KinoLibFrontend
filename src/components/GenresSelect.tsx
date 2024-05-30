@@ -1,27 +1,11 @@
 import { useState } from "react";
 
-import axios from "axios";
-
 import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
 
-import { MediaResponse } from "../types";
 import { useCards } from "../hooks/useCards";
+import { fetchGenres } from "../api/parseService";
 
 import "../styles/MultiSelect.css";
-
-async function fetchGenre(
-  genre: string,
-  mediaType: string
-): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`
-  );
-  console.log(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`
-  );
-
-  return response.data;
-}
 
 type GenresSelectProps = {
   mediaType: string;
@@ -55,15 +39,16 @@ const GenresSelect = ({ mediaType }: GenresSelectProps) => {
     { name: "фантастика", value: "fantasy" },
     { name: "фентезі", value: "fantasy-1" },
   ];
+
   function onChangeGenre(e: MultiSelectChangeEvent) {
     const genres = e.value;
     console.log(genres.join("%2C"));
     const x = ["asd", "sd"];
     x.join("%2C");
 
-    fetchGenre(genres.join("%2C"), mediaType)
+    fetchGenres(genres.join("%2C"), mediaType)
       .then(({ media, countOfPages }) => {
-        setCards(media.filter((media) => media.title != ""));
+        setCards(media.filter((media) => media.title !== ""));
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));

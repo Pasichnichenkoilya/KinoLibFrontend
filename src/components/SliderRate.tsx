@@ -1,24 +1,11 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import { Slider, SliderChangeEvent } from "primereact/slider";
 
-import { MediaResponse } from "../types";
 import { useCards } from "../hooks/useCards";
+import { fetchRating } from "../api/parseService";
 
 import "../styles/Menu.css";
-
-async function fetchRating(
-  from: number,
-  to: number,
-  mediaType: string
-): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&rating=${from}-${to}`
-  );
-  return response.data;
-}
 
 const SliderRate = ({ mediaType }: { mediaType: string }) => {
   const [value, setValue] = useState<[number, number]>([0, 10]);

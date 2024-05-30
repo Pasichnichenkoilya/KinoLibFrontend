@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 
 import MenuItems from "./MenuItems";
+import KnobSlider from "./KnobSlider";
+import SliderRate from "./SliderRate";
+import GenresSelect from "./GenresSelect";
 import DropdownChoices from "./DropdownChoices";
 import { useSidebar } from "../hooks/useSidebar";
 import { useMediaType } from "../hooks/useMediaType";
 
 import "primeicons/primeicons.css";
-import GenresSelect from "./GenresSelect";
-import KnobSlider from "./KnobSlider";
-import SliderRate from "./SliderRate";
 
 export default function Sidebar() {
   const sidebarRef = useRef<HTMLDivElement>(null);

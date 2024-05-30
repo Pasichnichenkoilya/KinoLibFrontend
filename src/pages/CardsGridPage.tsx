@@ -1,27 +1,16 @@
 import { useEffect } from "react";
 
-import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import Menu from "../components/Menu";
-import { MediaResponse } from "../types";
 import { useCards } from "../hooks/useCards";
 import { useTitle } from "../hooks/useTitle";
 import CardsGrid from "../components/CardsGrid";
+import { fetchCards } from "../api/parseService";
 import { MediaType, useMediaType } from "../hooks/useMediaType";
 
 import "../styles/Menu.css";
 import "../styles/Paginator.css";
-
-const fetchCards = async (
-  mediaType: string,
-  page: number
-): Promise<MediaResponse> => {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/${mediaType}/${page}`
-  );
-  return response.data;
-};
 
 type CardsGridPageProps = {
   title: string;

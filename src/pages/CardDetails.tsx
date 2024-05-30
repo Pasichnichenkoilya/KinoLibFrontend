@@ -1,36 +1,17 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import { Details } from "../types";
 import Player from "../components/Player";
 import Rating from "../components/Rating";
 import { useTitle } from "../hooks/useTitle";
+import { fetchDetails } from "../api/parseService";
 import Breadcrumbs from "../components/Breadcrumbs";
-
-const fetchDetails = async (mediaId: string): Promise<Details> => {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/details/${mediaId}`
-  );
-  return response.data;
-};
 
 const CardDetails = () => {
   useTitle("Details");
-  const [details, setDetails] = useState<Details>({
-    filmPath: [],
-    titleUa: "",
-    titleOriginal: "",
-    description: "",
-    image: "",
-    rating: 0,
-    country: "",
-    time: "",
-    release: "",
-    genres: [],
-    seasonsInfo: [],
-  });
+  const [details, setDetails] = useState<Details | undefined>();
   const { id, season, episode } = useParams();
 
   useEffect(() => {
@@ -42,6 +23,8 @@ const CardDetails = () => {
       })
       .catch((e) => console.log(e));
   }, [id, season, episode]);
+
+  if (details === undefined) return null;
 
   return (
     <>
@@ -59,7 +42,7 @@ const CardDetails = () => {
           <div className="max-w-18rem w-full lg:pt-0 pt-2">
             <img
               src={details.image}
-              alt="details image"
+              alt="details"
               className="border-round-3xl shadow-5 w-full max-h-26rem"
             />
             <Rating rating={details.rating} />

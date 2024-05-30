@@ -2,10 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import CardDetails from "./pages/CardDetails";
 import Providers from "./components/Providers";
 import CardsGridPage from "./pages/CardsGridPage";
 import SidebarButton from "./components/SidebarButton";
-import CardDetails from "./pages/CardDetails";
 
 import "primeflex/primeflex.css";
 import "primeicons/primeicons.css";
@@ -13,7 +13,6 @@ import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
 
 import "../src/normalize.css";
-import Menu from "./components/Menu";
 
 const App = () => {
   return (
