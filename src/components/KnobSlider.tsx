@@ -1,11 +1,14 @@
-import { Knob, KnobChangeEvent } from "primereact/knob";
 import { useEffect, useState } from "react";
+
+import axios from "axios";
+
+import { Knob } from "primereact/knob";
+
+import { MediaResponse } from "../types";
+import { useCards } from "../hooks/useCards";
 import useDebounce from "../hooks/useDebounce";
 
 import "../styles/KnobSlider.css";
-import { MediaResponse } from "../types";
-import axios from "axios";
-import { useCardsContext } from "../hooks/useCards";
 
 const YEARS = [
   "1800-2009",
@@ -30,7 +33,7 @@ async function fetchYears(
 
 export default function KnobSlider({ mediaType }: { mediaType: string }) {
   const [value, setValue] = useState<number | undefined>(undefined);
-  const { setCards, setCountOfPages } = useCardsContext();
+  const { setCards, setCountOfPages } = useCards();
 
   const debouncedValue = useDebounce(value, 1000);
 
@@ -43,7 +46,6 @@ export default function KnobSlider({ mediaType }: { mediaType: string }) {
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
-    console.log("fetching");
   }, [debouncedValue]);
 
   return (

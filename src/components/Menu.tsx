@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import KnobSlider from "./KnobSlider";
 import SliderRate from "./SliderRate";
 import GenresSelect from "./GenresSelect";
@@ -19,7 +17,7 @@ type MenuProps = {
 
 const Menu = ({ mediaType }: MenuProps) => {
   return (
-    <div className="w-full h-10rem flex justify-content-around relative">
+    <div className="w-full h-10rem hidden justify-content-around relative md:flex">
       <div className="w-3 h-full flex flex-column relative overflow-hidden align-items-start gap-3  mr-8">
         <DropdownChoices mediaType={mediaType} />
         <GenresSelect mediaType={mediaType} />

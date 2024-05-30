@@ -65,17 +65,33 @@ const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
   }, [id, season, episode]);
 
   return (
-    <div className="w-full details-wrapper border-round-3xl p-5 flex flex-column align-items-center">
+    <div
+      style={{
+        background: "#1b1b1b",
+      }}
+      className="w-full border-round-3xl lg:p-5 flex flex-column align-items-center">
       {seasons.length > 0 ? (
-        <div className="w-full max-w-48rem pb-4">
+        <div
+          style={{
+            maxWidth: "48rem",
+          }}
+          className="w-full pb-4">
           <HorizontalCarousel items={seasons} />
         </div>
       ) : null}
       <iframe
+        style={{
+          aspectRatio: "16 / 9",
+          maxWidth: "48rem",
+        }}
         src={playerUrl}
-        className="w-full aspect-video max-w-48rem"></iframe>
+        className="w-full"></iframe>
       {episodes.length > 0 ? (
-        <div className="w-full max-w-48rem pt-4">
+        <div
+          style={{
+            maxWidth: "48rem",
+          }}
+          className="w-full pt-4">
           <HorizontalCarousel items={episodes} />
         </div>
       ) : null}

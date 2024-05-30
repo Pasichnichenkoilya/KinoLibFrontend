@@ -1,12 +1,11 @@
-import { useState } from "react";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Media } from "./types";
 import Navbar from "./components/Navbar";
-import { CardsContext } from "./hooks/useCards";
+import Sidebar from "./components/Sidebar";
+import Providers from "./components/Providers";
 import CardsGridPage from "./pages/CardsGridPage";
-import CardDetails from "./pages/CardDetails/CardDetails";
+import SidebarButton from "./components/SidebarButton";
+import CardDetails from "./pages/CardDetails";
 
 import "primeflex/primeflex.css";
 import "primeicons/primeicons.css";
@@ -16,19 +15,23 @@ import "primereact/resources/themes/tailwind-light/theme.css";
 import "../src/normalize.css";
 
 const App = () => {
-  const [cards, setCards] = useState<Media[]>([]);
-  const [countOfPages, setCountOfPages] = useState(0);
-
   return (
-    <CardsContext.Provider
-      value={{ cards, setCards, countOfPages, setCountOfPages }}>
+    <Providers>
       <BrowserRouter>
-        <Navbar />
         <div
           style={{
             background: "#18181B",
-            paddingTop: "8rem",
-          }}>
+            height: "100dvh",
+          }}
+          className="flex flex-column">
+          <Navbar />
+          <Sidebar />
+          <SidebarButton />
+          <div
+            style={{
+              paddingTop: "14rem",
+            }}
+            className="hidden md:block"></div>
           <Routes>
             <Route
               index
@@ -71,7 +74,7 @@ const App = () => {
           </Routes>
         </div>
       </BrowserRouter>
-    </CardsContext.Provider>
+    </Providers>
   );
 };
 
