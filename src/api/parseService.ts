@@ -29,8 +29,6 @@ export async function fetchGenres(
   const response = await axios.get(
     `${HOST}/filter/?mediaType=${mediaType}&genre=${genres}`
   );
-  console.log(`${HOST}/filter/?mediaType=${mediaType}&genre=${genres}`);
-
   return response.data;
 }
 

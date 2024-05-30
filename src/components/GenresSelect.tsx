@@ -42,7 +42,6 @@ const GenresSelect = ({ mediaType }: GenresSelectProps) => {
 
   function onChangeGenre(e: MultiSelectChangeEvent) {
     const genres = e.value;
-    console.log(genres.join("%2C"));
     const x = ["asd", "sd"];
     x.join("%2C");
 
