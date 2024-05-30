@@ -2,13 +2,13 @@ import axios from "axios";
 
 import { Details, MediaResponse } from "../types";
 
+const HOST = "https://kinolib-backend-homer.fly.dev/parse";
+
 export async function fetchCards(
   mediaType: string,
   page: number
 ): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/${mediaType}/${page}`
-  );
+  const response = await axios.get(`${HOST}/${mediaType}/${page}`);
   return response.data;
 }
 
@@ -17,7 +17,7 @@ export async function fetchPriority(
   mediaType: string
 ): Promise<MediaResponse> {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&priority=${priority}`
+    `${HOST}/filter/?mediaType=${mediaType}&priority=${priority}`
   );
   return response.data;
 }
@@ -27,11 +27,9 @@ export async function fetchGenres(
   mediaType: string
 ): Promise<MediaResponse> {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genres}`
+    `${HOST}/filter/?mediaType=${mediaType}&genre=${genres}`
   );
-  console.log(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genres}`
-  );
+  console.log(`${HOST}/filter/?mediaType=${mediaType}&genre=${genres}`);
 
   return response.data;
 }
@@ -41,7 +39,7 @@ export async function fetchYears(
   mediaType: string
 ): Promise<MediaResponse> {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&date=${year}`
+    `${HOST}/filter/?mediaType=${mediaType}&date=${year}`
   );
   return response.data;
 }
@@ -52,7 +50,7 @@ export async function fetchPlayer(
   episode: string
 ): Promise<string> {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/player-url/${id}/${season}/${episode}`
+    `${HOST}/player-url/${id}/${season}/${episode}`
       .replaceAll("//", "/")
       .replaceAll(":/", "://")
   );
@@ -60,9 +58,7 @@ export async function fetchPlayer(
 }
 
 export async function fetchSearch(search: string): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/search/${search}`
-  );
+  const response = await axios.get(`${HOST}/search/${search}`);
   return response.data;
 }
 
@@ -72,14 +68,12 @@ export async function fetchRating(
   mediaType: string
 ): Promise<MediaResponse> {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&rating=${from}-${to}`
+    `${HOST}/filter/?mediaType=${mediaType}&rating=${from}-${to}`
   );
   return response.data;
 }
 
 export async function fetchDetails(mediaId: string): Promise<Details> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/details/${mediaId}`
-  );
+  const response = await axios.get(`${HOST}/details/${mediaId}`);
   return response.data;
 }
