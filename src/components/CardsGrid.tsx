@@ -41,8 +41,17 @@ const CardsGrid = ({
     navigate(`/${navigateUrl}/${event.page + 1}`);
   };
 
+  if (cards.length === 0)
+    return (
+      <p className="text-white mx-auto w-fit text-xl">{"Nothing found"}</p>
+    );
+
   return (
-    <div className="bg-gray-900 w-full h-full flex flex-column">
+    <div
+      style={{
+        maxWidth: "105rem",
+      }}
+      className="bg-gray-900 w-full h-full flex flex-column mx-auto">
       <div className="flex flex-column">
         <DataView value={cards} listTemplate={listTemplate} layout={"grid"} />
         {countOfPages ? (

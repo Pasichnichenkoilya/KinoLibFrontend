@@ -55,7 +55,7 @@ const CardDetails = () => {
           style={{
             background: "#1b1b1b",
           }}
-          className="border-round-3xl md:p-3 flex gap-3 flex-column lg:flex-row align-items-center lg:align-items-start">
+          className="border-round-3xl lg:p-3 flex gap-3 flex-column lg:flex-row align-items-center lg:align-items-start">
           <div className="max-w-18rem w-full lg:pt-0 pt-2">
             <img
               src={details.image}

@@ -13,6 +13,7 @@ import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
 
 import "../src/normalize.css";
+import Menu from "./components/Menu";
 
 const App = () => {
   return (
@@ -31,7 +32,7 @@ const App = () => {
             style={{
               paddingTop: "14rem",
             }}
-            className="hidden md:block"></div>
+            className="hidden lg:block"></div>
           <Routes>
             <Route
               index

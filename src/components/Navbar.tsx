@@ -12,10 +12,8 @@ import "primeicons/primeicons.css";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
-  const [checked, setChecked] = useState(false);
-
   return (
-    <div className="flex-row justify-content-center w-full fixed nav_index hidden md:flex">
+    <div className="flex-row justify-content-center w-full fixed nav_index hidden lg:flex">
       <div className="h-6rem width_nav nav_bg  borders flex flex-row align-items-center justify-content-between fixed">
         <div className="w-2 h-2rem flex flex-row align-items-center ml-6">
           <img
@@ -53,13 +51,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="w-2 h-4rem mr-6 flex justify-content-center ">
-          <InputSwitch
-            checked={checked}
-            onChange={(e) => setChecked(e.value)}
-            className="mt-auto mb-auto"
-          />
-        </div>
+        <div className="w-2 h-4rem mr-6 flex justify-content-center"></div>
       </div>
     </div>
   );

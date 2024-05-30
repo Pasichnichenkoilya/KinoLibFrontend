@@ -16,6 +16,10 @@ async function fetchGenre(
   const response = await axios.get(
     `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`
   );
+  console.log(
+    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`
+  );
+
   return response.data;
 }
 
@@ -52,10 +56,14 @@ const GenresSelect = ({ mediaType }: GenresSelectProps) => {
     { name: "фентезі", value: "fantasy-1" },
   ];
   function onChangeGenre(e: MultiSelectChangeEvent) {
-    const genre = e.value;
-    fetchGenre(genre, mediaType)
+    const genres = e.value;
+    console.log(genres.join("%2C"));
+    const x = ["asd", "sd"];
+    x.join("%2C");
+
+    fetchGenre(genres.join("%2C"), mediaType)
       .then(({ media, countOfPages }) => {
-        setCards(media);
+        setCards(media.filter((media) => media.title != ""));
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
@@ -71,7 +79,7 @@ const GenresSelect = ({ mediaType }: GenresSelectProps) => {
       display="chip"
       placeholder="🎭 Обери жанр"
       maxSelectedLabels={3}
-      className="w-full md:w-20rem border-round-3xl border-none"
+      className="w-full lg:w-20rem border-round-3xl border-none"
     />
   );
 };

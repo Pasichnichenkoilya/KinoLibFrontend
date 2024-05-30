@@ -61,7 +61,7 @@ const HorizontalCarousel = ({ items }: HorizontalCarouselProps) => {
             transform: `translateX(-${translate}px)`,
             transition: "ease-in-out .125s",
           }}>
-          {items.map((item) => item)}
+          {items}
         </div>
       </div>
       {isRightVisible ? (

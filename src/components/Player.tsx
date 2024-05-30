@@ -19,10 +19,9 @@ const fetchPlayer = async (
   episode: string
 ): Promise<string> => {
   const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/player-url/${id}/${season}/${episode}`.replaceAll(
-      "//",
-      "/"
-    )
+    `https://kinolib-backend-homer.fly.dev/parse/player-url/${id}/${season}/${episode}`
+      .replaceAll("//", "/")
+      .replaceAll(":/", "://")
   );
   return response.data.playerUrl;
 };
@@ -85,7 +84,7 @@ const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
           maxWidth: "48rem",
         }}
         src={playerUrl}
-        className="w-full"></iframe>
+        className="w-full border-none"></iframe>
       {episodes.length > 0 ? (
         <div
           style={{

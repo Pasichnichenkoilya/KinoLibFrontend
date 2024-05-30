@@ -30,6 +30,10 @@
   margin-left: 5px;
 }
 
+.p-highlight {
+  background-color: #3e3e3e;
+}
+
 .p-paginator-page:hover {
   background-color: #93aaff50;
   border-color: #93abff;

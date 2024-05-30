@@ -56,7 +56,7 @@ const DropdownChoices = ({ mediaType }: DropdownChoicesProps) => {
       options={choises}
       optionLabel="name"
       placeholder="🔎 Select a choise"
-      className="w-full md:w-20rem border-round-3xl base_color border-transparent mt-1"
+      className="w-full lg:w-20rem border-round-3xl base_color border-transparent mt-1"
     />
   );
 };

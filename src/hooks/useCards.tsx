@@ -21,6 +21,7 @@ export const CardsContext = createContext<CardsState | undefined>(undefined);
 export function CardsProvider({ children }: { children: ReactNode }) {
   const [cards, setCards] = useState<Media[]>([]);
   const [countOfPages, setCountOfPages] = useState(0);
+  console.log(cards);
 
   return (
     <CardsContext.Provider
