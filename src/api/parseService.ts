@@ -65,8 +65,10 @@ export async function fetchRating(
   to: number,
   mediaType: string
 ): Promise<MediaResponse> {
+  const max = from > to ? from : to;
+  const min = from < to ? from : to;
   const response = await axios.get(
-    `${HOST}/filter/?mediaType=${mediaType}&rating=${from}-${to}`
+    `${HOST}/filter/?mediaType=${mediaType}&rating=${min}-${max}`
   );
   return response.data;
 }
