@@ -63,7 +63,7 @@ const GenresSelect = ({ mediaType }: GenresSelectProps) => {
       display="chip"
       placeholder="🎭 Обери жанр"
       maxSelectedLabels={3}
-      className="w-full lg:w-20rem border-round-3xl border-none"
+      className="w-full lg:w-13rem xl:w-16rem border-round-3xl border-none"
     />
   );
 };

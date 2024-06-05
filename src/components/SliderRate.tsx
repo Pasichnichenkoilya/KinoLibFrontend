@@ -34,7 +34,7 @@ const SliderRate = ({ mediaType }: { mediaType: string }) => {
         onSlideEnd={onSlideEnd}
         onChange={(e) => setValue(e.value as [number, number])}
         range
-        className="w-14rem relative mt-6 lg:w-13rem"
+        className="relative mt-1 w-9rem xl:mt-6"
       />
       <div className="text-white relative flex flex-row gap-1 justify-content-center align-items-center">
         <label className="text-white">Рейтинг:</label>

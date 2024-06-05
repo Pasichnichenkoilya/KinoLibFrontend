@@ -24,7 +24,8 @@ const Menu = ({ mediaType }: MenuProps) => {
         <DropdownChoices mediaType={mediaType} />
         <GenresSelect mediaType={mediaType} />
       </div>
-      <div className="flex gap-3">
+
+      <div className="xl:flex gap-3">
         <KnobSlider mediaType={mediaType} />
         <SliderRate mediaType={mediaType} />
       </div>

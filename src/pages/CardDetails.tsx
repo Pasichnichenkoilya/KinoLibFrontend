@@ -33,6 +33,11 @@ const CardDetails = () => {
           maxWidth: "80rem",
         }}
         className="mx-auto lg:px-5 px-2 text-white">
+        <div
+          style={{
+            paddingTop: "8.25rem",
+          }}
+          className="hidden lg:block"></div>
         <Breadcrumbs breadcrumbs={details.filmPath} />
         <div
           style={{

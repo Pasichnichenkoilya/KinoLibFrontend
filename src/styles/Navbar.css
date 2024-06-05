@@ -6,7 +6,8 @@
 }
 
 .width_nav {
-  width: 86%;
+  width: 100%;
+  max-width: 105rem;
 }
 
 .inst_img {

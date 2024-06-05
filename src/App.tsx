@@ -29,7 +29,7 @@ const App = () => {
           <SidebarButton />
           <div
             style={{
-              paddingTop: "14rem",
+              paddingTop: "6rem",
             }}
             className="hidden lg:block"></div>
           <Routes>
