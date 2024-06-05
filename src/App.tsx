@@ -13,6 +13,7 @@ import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
 
 import "../src/normalize.css";
+import Search from "./components/Search";
 
 const App = () => {
   return (
@@ -26,7 +27,11 @@ const App = () => {
           className="flex flex-column">
           <Navbar />
           <Sidebar />
-          <SidebarButton />
+
+          <div className="lg:hidden p-3 flex justify-content-between gap-3">
+            <Search />
+            <SidebarButton />
+          </div>
           <div
             style={{
               paddingTop: "6rem",

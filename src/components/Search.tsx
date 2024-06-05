@@ -20,7 +20,7 @@ const Search = () => {
   const [isFocused, setIsFocused] = useState(false);
   const debouncedSearchValue = useDebounce(value, 100);
 
-  const isListVisible = cards.length > 0 && isFocused;
+  const isListVisible = cards.length > 0 && isFocused && value !== "";
 
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {
@@ -65,7 +65,7 @@ const Search = () => {
   return (
     <div
       onFocus={handleOpen}
-      className={`search-container ${isFocused ? "focused" : ""}`}>
+      className={`search-container flex-1 ${isFocused ? "focused" : ""}`}>
       <div ref={wrapperRef}>
         <IconField iconPosition="left" className="input-container">
           <InputIcon className="pi pi-search text-white" />
