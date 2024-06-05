@@ -67,7 +67,7 @@ const Player = ({ id, season, episode, seasonsInfo }: PlayerProps) => {
       <iframe
         title={id + season}
         style={{
-          aspectRatio: "16 / 9",
+          aspectRatio: "16 / 10",
           maxWidth: "48rem",
         }}
         src={playerUrl}

@@ -8,6 +8,7 @@ import Rating from "../components/Rating";
 import { useTitle } from "../hooks/useTitle";
 import { fetchDetails } from "../api/parseService";
 import Breadcrumbs from "../components/Breadcrumbs";
+import GenrePills from "../components/GenrePills";
 
 const CardDetails = () => {
   useTitle("Details");
@@ -108,17 +109,8 @@ const CardDetails = () => {
                 {details.description}
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {details.genres.map((genre) => (
-                <span
-                  style={{
-                    borderColor: "#2b2b2b",
-                  }}
-                  key={genre}
-                  className="border-2 border-round-3xl py-2 px-3 genre-pill">
-                  {genre}
-                </span>
-              ))}
+            <div className="hidden lg:block">
+              <GenrePills genres={details.genres} />
             </div>
           </div>
         </div>
@@ -134,6 +126,9 @@ const CardDetails = () => {
           episode={episode || "episode-1"}
           seasonsInfo={details.seasonsInfo}
         />
+        <div className="lg:hidden pt-3">
+          <GenrePills genres={details.genres} />
+        </div>
       </div>
     </>
   );
