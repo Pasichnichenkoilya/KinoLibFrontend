@@ -1,23 +1,11 @@
 import { useState } from "react";
 
-import axios from "axios";
-
 import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
 
-import { MediaResponse } from "../types";
 import { useCards } from "../hooks/useCards";
+import { fetchGenres } from "../api/parseService";
 
 import "../styles/MultiSelect.css";
-
-async function fetchGenre(
-  genre: string,
-  mediaType: string
-): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&genre=${genre}`
-  );
-  return response.data;
-}
 
 type GenresSelectProps = {
   mediaType: string;
@@ -51,11 +39,15 @@ const GenresSelect = ({ mediaType }: GenresSelectProps) => {
     { name: "фантастика", value: "fantasy" },
     { name: "фентезі", value: "fantasy-1" },
   ];
+
   function onChangeGenre(e: MultiSelectChangeEvent) {
-    const genre = e.value;
-    fetchGenre(genre, mediaType)
+    const genres = e.value;
+    const x = ["asd", "sd"];
+    x.join("%2C");
+
+    fetchGenres(genres.join("%2C"), mediaType)
       .then(({ media, countOfPages }) => {
-        setCards(media);
+        setCards(media.filter((media) => media.title !== ""));
         setCountOfPages(countOfPages);
       })
       .catch((error) => console.log(error));
@@ -71,7 +63,7 @@ const GenresSelect = ({ mediaType }: GenresSelectProps) => {
       display="chip"
       placeholder="🎭 Обери жанр"
       maxSelectedLabels={3}
-      className="w-full md:w-20rem border-round-3xl border-none"
+      className="w-full lg:w-13rem xl:w-16rem border-round-3xl border-none"
     />
   );
 };

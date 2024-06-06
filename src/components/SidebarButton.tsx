@@ -8,6 +8,6 @@ export default function SidebarButton() {
   return (
     <span
       onClick={() => setIsOpen(true)}
-      className="pi pi-bars text-4xl text-white p-2 absolute md:hidden z-5 right-0"></span>
+      className="pi pi-bars text-4xl text-white p-2 lg:hidden z-5 right-0"></span>
   );
 }

@@ -15,9 +15,9 @@ type BreadcrumbsProps = {
 
 export default function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
   return (
-    <p className="flex flex-wrap gap-1 lg:ml-5">
+    <p className="flex flex-wrap gap-1 lg:ml-5 pr-6">
       {breadcrumbs.slice(0, breadcrumbs.length - 1).map((item) => (
-        <>
+        <span key={item}>
           <Link
             to={getBreadcrumbUrl(item)}
             style={{
@@ -33,7 +33,7 @@ export default function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
             className="select-none">
             {" > "}
           </span>
-        </>
+        </span>
       ))}
       <span>{breadcrumbs[breadcrumbs.length - 1]}</span>
     </p>

@@ -3,8 +3,6 @@ import SliderRate from "./SliderRate";
 import GenresSelect from "./GenresSelect";
 import DropdownChoices from "./DropdownChoices";
 
-import "../styles/Menu.css";
-
 type MenuProps = {
   mediaType:
     | "all"
@@ -17,12 +15,17 @@ type MenuProps = {
 
 const Menu = ({ mediaType }: MenuProps) => {
   return (
-    <div className="w-full h-10rem hidden justify-content-around relative md:flex">
-      <div className="w-3 h-full flex flex-column relative overflow-hidden align-items-start gap-3  mr-8">
+    <div
+      style={{
+        maxWidth: "105rem",
+      }}
+      className="hidden justify-content-between lg:flex h-10rem mx-auto pt-3 px-5">
+      <div className="flex flex-column gap-3">
         <DropdownChoices mediaType={mediaType} />
         <GenresSelect mediaType={mediaType} />
       </div>
-      <div className="w-4 h-full flex flex-row relative pl-8 gap-5 pr-4">
+
+      <div className="xl:flex gap-3">
         <KnobSlider mediaType={mediaType} />
         <SliderRate mediaType={mediaType} />
       </div>

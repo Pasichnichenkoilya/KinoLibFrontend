@@ -1,36 +1,18 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import { Details } from "../types";
 import Player from "../components/Player";
 import Rating from "../components/Rating";
 import { useTitle } from "../hooks/useTitle";
+import { fetchDetails } from "../api/parseService";
 import Breadcrumbs from "../components/Breadcrumbs";
-
-const fetchDetails = async (mediaId: string): Promise<Details> => {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/details/${mediaId}`
-  );
-  return response.data;
-};
+import GenrePills from "../components/GenrePills";
 
 const CardDetails = () => {
   useTitle("Details");
-  const [details, setDetails] = useState<Details>({
-    filmPath: [],
-    titleUa: "",
-    titleOriginal: "",
-    description: "",
-    image: "",
-    rating: 0,
-    country: "",
-    time: "",
-    release: "",
-    genres: [],
-    seasonsInfo: [],
-  });
+  const [details, setDetails] = useState<Details | undefined>();
   const { id, season, episode } = useParams();
 
   useEffect(() => {
@@ -43,6 +25,8 @@ const CardDetails = () => {
       .catch((e) => console.log(e));
   }, [id, season, episode]);
 
+  if (details === undefined) return null;
+
   return (
     <>
       <div
@@ -50,16 +34,21 @@ const CardDetails = () => {
           maxWidth: "80rem",
         }}
         className="mx-auto lg:px-5 px-2 text-white">
+        <div
+          style={{
+            paddingTop: "8.25rem",
+          }}
+          className="hidden lg:block"></div>
         <Breadcrumbs breadcrumbs={details.filmPath} />
         <div
           style={{
             background: "#1b1b1b",
           }}
-          className="border-round-3xl md:p-3 flex gap-3 flex-column lg:flex-row align-items-center lg:align-items-start">
+          className="border-round-3xl lg:p-3 flex gap-3 flex-column lg:flex-row align-items-center lg:align-items-start">
           <div className="max-w-18rem w-full lg:pt-0 pt-2">
             <img
               src={details.image}
-              alt="details image"
+              alt="details"
               className="border-round-3xl shadow-5 w-full max-h-26rem"
             />
             <Rating rating={details.rating} />
@@ -120,17 +109,8 @@ const CardDetails = () => {
                 {details.description}
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {details.genres.map((genre) => (
-                <span
-                  style={{
-                    borderColor: "#2b2b2b",
-                  }}
-                  key={genre}
-                  className="border-2 border-round-3xl py-2 px-3 genre-pill">
-                  {genre}
-                </span>
-              ))}
+            <div className="hidden lg:block">
+              <GenrePills genres={details.genres} />
             </div>
           </div>
         </div>
@@ -146,6 +126,9 @@ const CardDetails = () => {
           episode={episode || "episode-1"}
           seasonsInfo={details.seasonsInfo}
         />
+        <div className="lg:hidden pt-3">
+          <GenrePills genres={details.genres} />
+        </div>
       </div>
     </>
   );

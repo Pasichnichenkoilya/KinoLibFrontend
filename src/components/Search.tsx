@@ -1,24 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 
+import { Media } from "../types";
 import { useCards } from "../hooks/useCards";
 import useDebounce from "../hooks/useDebounce";
-import { Media, MediaResponse } from "../types";
+import { fetchSearch } from "../api/parseService";
 
 import "../styles/Search.css";
-
-async function fetchSearch(search: string): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/search/${search}`
-  );
-  return response.data;
-}
 
 const Search = () => {
   const { cards, setCards, setCountOfPages } = useCards();
@@ -27,7 +20,7 @@ const Search = () => {
   const [isFocused, setIsFocused] = useState(false);
   const debouncedSearchValue = useDebounce(value, 100);
 
-  const isListVisible = cards.length > 0 && isFocused;
+  const isListVisible = cards.length > 0 && isFocused && value !== "";
 
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {
@@ -72,7 +65,7 @@ const Search = () => {
   return (
     <div
       onFocus={handleOpen}
-      className={`search-container ${isFocused ? "focused" : ""}`}>
+      className={`search-container flex-1 ${isFocused ? "focused" : ""}`}>
       <div ref={wrapperRef}>
         <IconField iconPosition="left" className="input-container">
           <InputIcon className="pi pi-search text-white" />

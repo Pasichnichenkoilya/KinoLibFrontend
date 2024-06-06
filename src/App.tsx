@@ -2,10 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import CardDetails from "./pages/CardDetails";
 import Providers from "./components/Providers";
 import CardsGridPage from "./pages/CardsGridPage";
 import SidebarButton from "./components/SidebarButton";
-import CardDetails from "./pages/CardDetails";
 
 import "primeflex/primeflex.css";
 import "primeicons/primeicons.css";
@@ -13,6 +13,7 @@ import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
 
 import "../src/normalize.css";
+import Search from "./components/Search";
 
 const App = () => {
   return (
@@ -26,12 +27,16 @@ const App = () => {
           className="flex flex-column">
           <Navbar />
           <Sidebar />
-          <SidebarButton />
+
+          <div className="lg:hidden p-3 flex justify-content-between gap-3">
+            <Search />
+            <SidebarButton />
+          </div>
           <div
             style={{
-              paddingTop: "14rem",
+              paddingTop: "6rem",
             }}
-            className="hidden md:block"></div>
+            className="hidden lg:block"></div>
           <Routes>
             <Route
               index

@@ -1,24 +1,11 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import { Slider, SliderChangeEvent } from "primereact/slider";
 
-import { MediaResponse } from "../types";
 import { useCards } from "../hooks/useCards";
+import { fetchRating } from "../api/parseService";
 
 import "../styles/Menu.css";
-
-async function fetchRating(
-  from: number,
-  to: number,
-  mediaType: string
-): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&rating=${from}-${to}`
-  );
-  return response.data;
-}
 
 const SliderRate = ({ mediaType }: { mediaType: string }) => {
   const [value, setValue] = useState<[number, number]>([0, 10]);
@@ -47,7 +34,7 @@ const SliderRate = ({ mediaType }: { mediaType: string }) => {
         onSlideEnd={onSlideEnd}
         onChange={(e) => setValue(e.value as [number, number])}
         range
-        className="w-14rem relative mt-6 md:w-13rem"
+        className="relative mt-1 w-9rem xl:mt-6"
       />
       <div className="text-white relative flex flex-row gap-1 justify-content-center align-items-center">
         <label className="text-white">Рейтинг:</label>

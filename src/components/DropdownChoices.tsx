@@ -1,24 +1,11 @@
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 
-import { MediaResponse } from "../types";
 import { useCards } from "../hooks/useCards";
+import { fetchPriority } from "../api/parseService";
 
 import "../styles/Dropdown.css";
-
-async function fetchPriority(
-  priority: string,
-
-  mediaType: string
-): Promise<MediaResponse> {
-  const response = await axios.get(
-    `https://kinolib-backend-homer.fly.dev/parse/filter/?mediaType=${mediaType}&priority=${priority}`
-  );
-  return response.data;
-}
 
 type DropdownChoicesProps = {
   mediaType: string;
@@ -56,7 +43,7 @@ const DropdownChoices = ({ mediaType }: DropdownChoicesProps) => {
       options={choises}
       optionLabel="name"
       placeholder="🔎 Select a choise"
-      className="w-full md:w-20rem border-round-3xl base_color border-transparent mt-1"
+      className="w-full lg:w-13rem xl:w-16rem border-round-3xl base_color border-transparent mt-1"
     />
   );
 };
